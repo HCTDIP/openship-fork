@@ -1,0 +1,17 @@
+{
+  "audit_mode": "FAULT_INJECTION",
+  "gate_code_hash": "8adc04a85f56ace0caad4d6b69dc7d1dc1b32a40bc55b79a36eaf5735440daf3",
+  "n_fault": 100,
+  "n_control": 100,
+  "interception_rate": 1.0,
+  "false_alarm_rate": 0.0,
+  "miss_rate": 0.0,
+  "reason_distribution": {
+    "A1_DELAY": 25,
+    "A4_NO_CAUSAL_TRACE": 25,
+    "A6_COMPUTE": 25,
+    "BOUNDARY": 25
+  },
+  "reason_correct": 100,
+  "misses": []
+}

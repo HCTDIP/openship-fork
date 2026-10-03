@@ -1,0 +1,60 @@
+{
+  "audit_mode": "REPLAY",
+  "label": "[REPLAY AUDIT] — not a live acceptance run",
+  "task": "hctdip-jev-replay-440",
+  "generated": "2026-09-29T14:47:20Z",
+  "engine": "jevaudit 0.2.0 / jevaudit.hctdip",
+  "hctdip_py_sha256": "dd6342e892a8ced321a2aa5a0f2568cf4e596812bd67717c5366e568563da6cd",
+  "defaults": {
+    "max_latency": 1.5,
+    "compute_limit": 440
+  },
+  "n": 100,
+  "new_api_calls": 0,
+  "classes": {
+    "ambiguous": 53,
+    "good": 42,
+    "bad": 5
+  },
+  "act": 100,
+  "veto": 0,
+  "interception_rate": 0.0,
+  "false_alarm_rate": null,
+  "miss_rate": 0.05,
+  "veto_reason_first": {
+    "BOUNDARY": 0,
+    "A4_NO_CAUSAL_TRACE": 0,
+    "A1_DELAY": 0,
+    "A6_COMPUTE": 0
+  },
+  "veto_reason_all": {
+    "BOUNDARY": 0,
+    "A4_NO_CAUSAL_TRACE": 0,
+    "A1_DELAY": 0,
+    "A6_COMPUTE": 0
+  },
+  "absorbing": {
+    "rejection": 0,
+    "rollback": 5,
+    "non_decisional": 53,
+    "executed_ok": 42
+  },
+  "changed_vs_400": 0,
+  "a6": {
+    "limit": 440,
+    "tokens_min": 372,
+    "tokens_median": 386,
+    "tokens_max": 400,
+    "min_headroom": 40,
+    "at_or_above_400": 2
+  },
+  "a1": {
+    "limit_s": 1.5,
+    "latency_min_s": 0.1889,
+    "latency_median_s": 0.246,
+    "latency_max_s": 0.7376,
+    "min_headroom_s": 0.7624
+  },
+  "boundary_violations": 0,
+  "causal_trace_missing": 0
+}

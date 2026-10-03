@@ -1,0 +1,27 @@
+{
+ "87faf4cc8d19fecd16a5bb3588fc3562dbc495c16175a9573cef678215dcf9ef": {
+  "label": "gate.py baseline (pre FIX-001)",
+  "commit": "9b4e091",
+  "file": "gate.py"
+ },
+ "8adc04a85f56ace0caad4d6b69dc7d1dc1b32a40bc55b79a36eaf5735440daf3": {
+  "label": "gate.py FIX-001",
+  "commit": "72be019",
+  "file": "gate.py"
+ },
+ "f4ddffdcc2cd8f8b61a46d0a4e9dcc5a20c4495a2ac0f56d3e2fb5f3c1eb99fe": {
+  "label": "gate.py FIX-002 (A6=440)",
+  "commit": "31ef742",
+  "file": "gate.py"
+ },
+ "8cb55040de4bef7ec9dd19e54cc99fa4fea73b5685e52a0d29a8181fb5627bee": {
+  "label": "gate.py CHG-003 gate_evidence + FIX-003",
+  "commit": "755a6ba",
+  "file": "gate.py"
+ },
+ "9a938ded8b71215de78986273f490d654057ccfcab09d306e5073ba950750495": {
+  "label": "jevaudit 0.2.0 hctdip.py (gate_evidence)",
+  "commit": "jevaudit ee4cef4",
+  "file": "jevaudit/hctdip.py"
+ }
+}

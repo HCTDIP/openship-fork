@@ -1,0 +1,8 @@
+{
+ "T1 改原始响应里的 p（output_hash）": "REJECTED (output_hash: mismatch)",
+ "T2 改输入文本（input_hash）": "REJECTED (input_hash: mismatch)",
+ "T3 未登记的判定代码（code_hash）": "REJECTED (code_hash: not in registry)",
+ "T4 删掉 gate_evidence": "REJECTED (gate_evidence: missing)",
+ "T5 证据说延迟超限但仍 ACT": "REJECTED (gate_decision: ACT but evidence says VETO)",
+ "T6 REPLAY 缺原始调用时间": "REJECTED (call_ts: REPLAY record needs original call time)"
+}
