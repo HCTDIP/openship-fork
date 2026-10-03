@@ -1,0 +1,11 @@
+missed 61
+ts
+2026-10-02 15:59:00    16
+2026-10-02 18:27:00    12
+2026-10-03 03:52:00     1
+2026-10-03 09:03:00    32
+missed blocks 5
+signals 652673 lat>60 10182 lat>5 13418
+normal 639255 bnd 172575 noprice 119171 oob 53404 closed 39 stale>60 0
+hl 13418 bnd 8305 noprice 7324 oob 981 closed 3653 stale>60 10182
+Counter({None: 7})
