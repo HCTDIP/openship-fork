@@ -1,0 +1,27 @@
+HCTDIP 24h chain-listener run - raw file push (no reprocessing)
+Run window: 2026-10-02 10:46 -> 2026-10-03 12:15 UTC
+listener.py code_hash: 68e29fd1e5973ded6efd7c8eab14501104450f81393521c9d273d816f7349b36
+
+All files byte-identical to the working copies (verified sha256 before commit).
+Only exception: raw/analysis/fills.parquet (119,289,127 B, >100MB GitHub limit)
+  pushed as fills.parquet.gz (gzip -n). gunzip sha256 of original:
+  25fe5bcc777f3b4e5baf4f388c9dd8b90f59aa71d79d64c0c6c14ac14e56fc58
+
+Layout:
+  raw/ledger/       24h ledger (2 x jsonl.gz), events, state, status
+  raw/listener/     listener.py (as deployed), wallets.json, Dockerfile, railway.toml, report.py, highlights.py
+  raw/repull/gl/    on-chain re-pull (204 parquet chunks, 3,900,170 fills / 61,178 blocks) - used to check the 5 missed blocks
+  raw/repull/       repull.py + log
+  raw/analysis/     parsed fills, signals, token/firsttx lookups, result.json, analysis scripts + logs
+  raw/audit_gate/cal001/       CAL-001 gate.py (used by analyze.py), CHANGELOG_CAL001.md, params, calibration zip
+  raw/audit_gate/hctdip_gate/  original HCTDIP gate package (gate.py, CHANGELOG.md, ledgers, scorecards)
+  raw/reports/      24h profit report, 24h audit report, Sept threshold report
+
+Not pushed:
+  token.txt (file-server access token - secret)
+  .venv/, __pycache__/ (environment, not data)
+gate2.py: no such file exists in the workspace (nothing was ever named gate2.py).
+
+raw/audit_gate/hctdip_gate/ was its own git repo (history: MIG-001, CHG-003, FIX-003, FIX-002 ...).
+A nested .git cannot be committed as files, so its .git/ directory is pushed unchanged as
+raw/audit_gate/hctdip_gate_dotgit.tar (plain tar, no compression). Extract inside hctdip_gate/ to restore history.
