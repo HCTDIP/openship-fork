@@ -1,0 +1,7 @@
+{"code_hash":"68e29fd1e5973ded6efd7c8eab14501104450f81393521c9d273d816f7349b36","duration_h":72.0,"ev":"start_new","n_wallets":2182,"next_block":94821879,"track":"wallets","ts":1790937961.4932516}
+{"code_hash":"68e29fd1e5973ded6efd7c8eab14501104450f81393521c9d273d816f7349b36","ev":"resume","fills":3127,"next_block":94822215,"ts":1790938462.7756503}
+{"code_hash":"68e29fd1e5973ded6efd7c8eab14501104450f81393521c9d273d816f7349b36","ev":"finished","fills":26638,"next_block":94824281,"ts":1790941561.7270617}
+{"code_hash":"68e29fd1e5973ded6efd7c8eab14501104450f81393521c9d273d816f7349b36","ev":"resume","fills":26638,"next_block":94824281,"ts":1790943136.3092089}
+{"code_hash":"68e29fd1e5973ded6efd7c8eab14501104450f81393521c9d273d816f7349b36","ev":"resume","fills":414554,"next_block":94847699,"ts":1790976689.8705924}
+{"code_hash":"68e29fd1e5973ded6efd7c8eab14501104450f81393521c9d273d816f7349b36","consecutive":1,"err":"RuntimeError(\"all rpc failed: TimeoutError('The read operation timed out')\")","ev":"error","ts":1791024829.8567038}
+{"code_hash":"68e29fd1e5973ded6efd7c8eab14501104450f81393521c9d273d816f7349b36","ev":"finished","fills":781199,"next_block":94883048,"ts":1791029711.4991708}
