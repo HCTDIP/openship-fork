@@ -1,0 +1,11 @@
+{
+ "profile": "copy_pipeline_v1 (LightGBM model_v1_roi 跟单管线)",
+ "max_latency_s": 60.0,
+ "max_latency_meaning": "信号年龄 = 源钱包成交 → 我方下单 的总时间（秒）",
+ "compute_limit_ms": 5.0,
+ "compute_limit_meaning": "单条决策模型推理耗时（毫秒）",
+ "boundary": ["市场在下单时刻已关闭", "下单时刻无可用价格", "下单价格不在 [0.05, 0.95]"],
+ "jev_profile_unchanged": {"max_latency_s": 1.5, "compute_limit_tokens": 440},
+ "calibrated_on": "2026-09 验证集（样本内校准，需新数据前向确认）",
+ "id": "CAL-001", "date": "2026-09-30"
+}

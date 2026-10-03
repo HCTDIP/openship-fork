@@ -1,0 +1,74 @@
+{
+ "DEFAULT": {
+  "n": 60000,
+  "veto": 60000,
+  "act": 0,
+  "bad_total": 27491,
+  "拦截率": 1.0,
+  "误报率": 0.5418,
+  "漏报率": 0.0,
+  "reason_dist": {
+   "A1_DELAY": 56838,
+   "BOUNDARY": 3162
+  },
+  "all_reasons_hits": {
+   "A1_DELAY": 60000,
+   "BOUNDARY": 3162
+  },
+  "ACT_net_mean_pct": null,
+  "VETO_net_mean_pct(executable ones)": 16.34,
+  "VETO_net_median_pct": 11.32
+ },
+ "CALIBRATED": {
+  "n": 60000,
+  "veto": 40495,
+  "act": 19505,
+  "bad_total": 27491,
+  "拦截率": 0.7506,
+  "误报率": 0.4904,
+  "漏报率": 0.3514,
+  "reason_dist": {
+   "A1_DELAY": 28558,
+   "BOUNDARY": 11935,
+   "A6_COMPUTE": 2
+  },
+  "all_reasons_hits": {
+   "A1_DELAY": 40000,
+   "BOUNDARY": 11935,
+   "A6_COMPUTE": 6
+  },
+  "ACT_net_mean_pct": 2.23,
+  "VETO_net_mean_pct(executable ones)": 23.71,
+  "VETO_net_median_pct": 2.1
+ },
+ "NO_GATE": {
+  "executed": 56838,
+  "net_mean_pct": 16.34,
+  "net_median_pct": 11.32,
+  "net_mean_excl_31_price<0.05_wins": -2.99,
+  "n_price<0.05_wins": 37
+ },
+ "CAL_ACT_by_group": {
+  "top10_ctrl": 2.67,
+  "top10_top300": 1.57
+ },
+ "boundary_breakdown": {
+  "closed_before_exec": 3162,
+  "no_price": 287,
+  "price_out_of_0.05_0.95": 11693,
+  "by_delay_out_of_band": {
+   "60": 512,
+   "180": 3493,
+   "300": 7688
+  },
+  "by_delay_closed": {
+   "60": 24,
+   "180": 605,
+   "300": 2533
+  }
+ },
+ "pred_roi_range": [
+  0.046011878893280005,
+  0.537284694784829
+ ]
+}
