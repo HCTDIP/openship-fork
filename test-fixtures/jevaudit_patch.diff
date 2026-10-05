@@ -1,0 +1,109 @@
+diff --git a/jevaudit/audit/__main__.py b/jevaudit/audit/__main__.py
+index 479a908..96d1073 100644
+--- a/jevaudit/audit/__main__.py
++++ b/jevaudit/audit/__main__.py
+@@ -7,7 +7,7 @@ report); exit 3 = findings and --fail-on-findings; exit 2 = bad input.
+ """
+ import argparse, glob, gzip, json, os, sys, time
+ 
+-from jevaudit.audit.chain import DEFAULT_RPCS, reconcile_with_chain, verify_ledger_integrity
++from jevaudit.audit.chain import DEFAULT_RPCS, check_partitions, reconcile_with_chain, verdicts, verify_ledger_integrity
+ 
+ 
+ def load(paths):
+@@ -42,6 +42,7 @@ def md(rep, integ, files):
+          f"| empty blocks confirmed by ≥2 nodes | {len(rep['empty_blocks_confirmed'])} |",
+          f"| node agreement sample | {rep['node_agreement_sample']['all_nodes_identical']}/{rep['node_agreement_sample']['blocks']} identical |",
+          "", f"**Result: {'OK' if rep['ok'] and integ['ok'] else 'FINDINGS'}**", ""]
++    L += ["## Verdicts", ""] + ([f"- {v['code']}: " + ", ".join(f"{k}={v[k]}" for k in v if k not in ("code", "fills") or (k == "fills" and isinstance(v[k], int))) for v in rep.get("verdicts", [])] or ["- PASS (no findings)"]) + [""]
+     if rep["missing_blocks"]:
+         L += ["## Blocks with missing fills", "", "| block | missing | in ledger |", "|---|---|---|"]
+         L += [f"| {m['block']} | {m['missing_fills']} | {m['ledger_fills']} |" for m in rep["missing_blocks"]]
+@@ -61,6 +62,7 @@ def main(argv=None):
+     r.add_argument("--from", dest="lo", type=int)
+     r.add_argument("--to", dest="hi", type=int)
+     r.add_argument("--state", help="listener state json: upper bound = last_processed (or next_block-1)")
++    r.add_argument("--status", help="listener status json: run end time for the day-partition check when state has no updated_at")
+     r.add_argument("--step", type=int, default=20)
+     r.add_argument("--workers", type=int, default=4)
+     r.add_argument("--fail-on-findings", action="store_true")
+@@ -91,6 +93,15 @@ def main(argv=None):
+     rep = reconcile_with_chain(recs, a.rpc or DEFAULT_RPCS, lo, hi, wallets, step=a.step, workers=a.workers,
+                                progress=lambda m: print(m, flush=True))
+     rep["integrity"] = integ
++    miss_parts = []
++    if a.state:
++        s = json.load(open(a.state))
++        end = s.get("updated_at") or (json.load(open(a.status)).get("ts") if a.status else None)
++        if s.get("start_ts") and end:
++            miss_parts = check_partitions(files, s["start_ts"], end)
++    rep["missing_partitions"] = miss_parts
++    rep["verdicts"] = verdicts(rep, integ, recs, miss_parts)
++    rep["ok"] = rep["ok"] and not rep["verdicts"]
+     rep["ledger_files"] = [os.path.basename(f) for f in files]
+     base = os.path.join(a.out_dir, f"reconcile_{lo}_{hi}")
+     with open(base + ".json", "w") as f:
+diff --git a/jevaudit/audit/chain.py b/jevaudit/audit/chain.py
+index 4805e59..77ea8e8 100644
+--- a/jevaudit/audit/chain.py
++++ b/jevaudit/audit/chain.py
+@@ -266,3 +266,59 @@ def reconcile_with_chain(records, rpcs=DEFAULT_RPCS, lo=None, hi=None, wallets=N
+         "multi_node_checked_blocks": len(multi),
+         "elapsed_s": round(time.time() - t0, 1),
+     }
++
++
++# ---- 3) verdicts (added on test/capability-verdicts for the capability test) ----------------
++def expected_partitions(start_ts, end_ts, prefix="chain_listener_"):
++    """UTC day partitions a listener running start_ts..end_ts must have written (one file per day)."""
++    out, d = [], int(start_ts) // 86400
++    while d <= int(end_ts) // 86400:
++        out.append(prefix + time.strftime("%Y%m%d", time.gmtime(d * 86400)))
++        d += 1
++    return out
++
++
++def check_partitions(files, start_ts, end_ts):
++    """Return the expected day partitions that are absent from `files` (basenames, any .jsonl[.gz])."""
++    import os
++    have = {os.path.basename(f).split(".")[0] for f in files}
++    return [p for p in expected_partitions(start_ts, end_ts) if p not in have]
++
++
++def verdicts(rep, integ, records, missing_partitions=(), ext=".jsonl.gz"):
++    """Turn a reconcile report into explicit finding codes. Empty list == PASS.
++    TRAILING_GAP: the ledger stops before the checked upper bound and the chain has tracked fills there.
++    MISSING_BLOCK: a block with tracked fills on chain and 0 in the ledger (before the ledger's last block).
++    MISSING_FROM_LEDGER: individual fills missing from a block the ledger does have.
++    """
++    lo, hi = rep["range"]["from"], rep["range"]["to"]
++    in_rng = [r["block"] for r in records if lo <= r["block"] <= hi]
++    led_max = max(in_rng) if in_rng else lo - 1
++    out = []
++    for p in missing_partitions:
++        out.append({"code": "MISSING_DAY_PARTITION", "file": p + ext})
++    tail = [m for m in rep["missing_blocks"] if m["block"] > led_max]
++    if tail:
++        out.append({"code": "TRAILING_GAP", "from": led_max + 1, "to": hi, "ledger_last_block": led_max,
++                    "blocks_with_fills": len(tail), "fills": sum(m["missing_fills"] for m in tail)})
++    for m in rep["missing_blocks"]:
++        if m["block"] > led_max:
++            continue
++        if m["ledger_fills"] == 0:
++            out.append({"code": "MISSING_BLOCK", "block": m["block"], "fills": m["missing_fills"]})
++    part = {m["block"] for m in rep["missing_blocks"] if m["ledger_fills"] > 0 and m["block"] <= led_max}
++    mf = [f for f in rep["missing_fills"] if f["block"] in part]
++    if mf:
++        out.append({"code": "MISSING_FROM_LEDGER", "n": sum(m["missing_fills"] for m in rep["missing_blocks"] if m["block"] in part),
++                    "fills": mf[:50]})
++    if rep["extra_fills"]:
++        out.append({"code": "EXTRA_IN_LEDGER", "n": rep["counts"]["extra_in_ledger"], "fills": rep["extra_fills"][:50]})
++    if rep["input_hash_mismatch"]:
++        out.append({"code": "INPUT_HASH_MISMATCH", "n": rep["counts"]["input_hash_mismatch"]})
++    if not integ.get("ok", True):
++        out.append({"code": "INTEGRITY_FAIL", "n": integ["n_failed"]})
++    for u in rep["unresolved_blocks"]:
++        out.append({"code": "UNAVAILABLE", "block": u["block"], "status": u["status"]})
++    for u in rep["unanswered_chunks"]:
++        out.append({"code": "UNAVAILABLE", "from": u["from"], "to": u["to"], "status": "NO_ANSWER"})
++    return out

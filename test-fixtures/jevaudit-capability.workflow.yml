@@ -17,7 +17,7 @@ jobs:
       - name: config
         run: cat test-fixtures/run_config.env >> "$GITHUB_ENV"; cat test-fixtures/run_config.env
       - name: install jevaudit
-        run: pip install "jevaudit @ git+https://github.com/HCTDIP/jevaudit@${JEVAUDIT_REF}"
+        run: if [ "$JEVAUDIT_REF" = patched ]; then pip install ./test-fixtures/jevaudit_patched; else pip install "jevaudit @ git+https://github.com/HCTDIP/jevaudit@${JEVAUDIT_REF}"; fi
       - name: suite (T1 T2 T3 T3.5 T3.6 T4 T5 + restore_and_verify)
         if: env.MODE == 'suite'
         env: {RUN_ID: "${{ github.run_id }}"}

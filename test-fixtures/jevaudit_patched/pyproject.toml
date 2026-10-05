@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "jevaudit"
+version = "0.2.0"
+description = "Universal calibration auditor for decision models: decide -> HCTDIP physical gate -> three-fingerprint ledger -> Brier + baselines + calibration curve. Audits ANY decision model, not just Jev."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+keywords = ["hctdip", "safety-gate", "calibration", "audit", "brier", "decision", "ledger", "llm", "agent"]
+authors = [{ name = "jevaudit contributors" }]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Topic :: Software Development :: Quality Assurance",
+]
+
+[tool.setuptools.packages.find]
+include = ["jevaudit", "jevaudit.*"]
+exclude = ["tests*"]
