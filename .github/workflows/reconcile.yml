@@ -1,0 +1,69 @@
+# Daily independent reconcile of listener ledgers against 3 public Polygon RPC nodes.
+# Reads ledgers/ (listener output, pushed by whoever runs the listener), writes reconcile/ only.
+# Code: jevaudit.audit pinned to a commit; listener code is not used.
+name: reconcile
+
+on:
+  schedule:
+    - cron: "23 2 * * *"   # 02:23 UTC daily
+  workflow_dispatch:
+    inputs:
+      ledger_glob:
+        description: "ledger files (e.g. raw/ledger/chain_listener_2026100*.jsonl.gz for the 24h run)"
+        default: "ledgers/chain_listener_*.jsonl*"
+      from_block:
+        description: "optional first block (manual range: cursor is not moved)"
+        default: ""
+      to_block:
+        description: "optional last block"
+        default: ""
+
+permissions:
+  contents: write
+
+concurrency:
+  group: reconcile
+  cancel-in-progress: false
+
+jobs:
+  reconcile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          sparse-checkout: |
+            ledgers
+            reconcile
+            listener
+            raw/ledger
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: install jevaudit (pinned)
+        run: pip install "jevaudit @ git+https://github.com/HCTDIP/jevaudit@404c1fb"
+      - name: reconcile
+        env:
+          GLOB: ${{ inputs.ledger_glob || 'ledgers/chain_listener_*.jsonl*' }}
+          FROM: ${{ inputs.from_block }}
+          TO: ${{ inputs.to_block }}
+        run: |
+          set -euo pipefail
+          ARGS=()
+          if [ -n "${FROM}" ]; then ARGS+=(--from "${FROM}"); fi
+          if [ -n "${TO}" ]; then ARGS+=(--to "${TO}"); fi
+          python -m jevaudit.audit reconcile \
+            --ledger-glob "${GLOB}" \
+            --wallets listener/wallets.json \
+            --known-code-hash 68e29fd1e5973ded6efd7c8eab14501104450f81393521c9d273d816f7349b36 \
+            --known-code-hash 0bd0618033e0ba07147406c3a4a63fff89999ca8bf47544aaeeb0bd88bd2eb99 \
+            --out-dir reconcile "${ARGS[@]}" | tee -a "$GITHUB_STEP_SUMMARY"
+      - name: commit results
+        run: |
+          git config user.name "reconcile-bot"
+          git config user.email "reconcile-bot@users.noreply.github.com"
+          git add reconcile
+          if git diff --cached --quiet; then echo "no new results"; exit 0; fi
+          git commit -m "reconcile: $(date -u +%Y-%m-%d) $(ls -t reconcile/*.json | head -1)"
+          git push
