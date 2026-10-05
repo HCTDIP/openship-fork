@@ -1,5 +1,27 @@
 # listener CHANGELOG
 
+## v0.3.0-freeze — 2026-10-05 (listener.py sha256 `590c1bdd13149f1b7ab6ea05ec99883594d588f7e4f327a9a83ae1a54ef4f4e4`, tag `listener-v0.3.0-freeze`)
+
+Why: edge test T4c failed on v3 (`0bd06180…`). With `CONFIRM_DEPTH=0` and all nodes lagging at the tip,
+two nodes both answered "no logs" for block 256, v3 marked it `CONFIRMED_EMPTY` and moved the cursor
+past it — the same loss as the 24h incident. "Two nodes empty" is not proof at the tip, because nodes lag together.
+
+Changes (listener.py only; gate code untouched):
+1. New hard-coded `MIN_SAFE_DEPTH = 5`. Not read from any environment variable.
+2. New `effective_depth() = max(CONFIRM_DEPTH, MIN_SAFE_DEPTH)`.
+3. `CONFIRMED_EMPTY` now requires: ≥2 different nodes answered "no logs" **AND** `block < head - effective_depth()` (strict).
+   Otherwise the block is `UNAVAILABLE`: cursor stops before it, retried next round.
+   `CONFIRM_DEPTH` still sets which blocks are read (it can be 0; it is not refused). It is a performance knob;
+   `MIN_SAFE_DEPTH` is a safety invariant and cannot be switched off.
+4. Checkpoint/status adds `min_safe_depth`, `effective_depth`.
+5. T4c: FAIL (v3 `0bd06180`) → PASS (this version). Mock RPC output of both runs in
+   `test-fixtures/reconcile/run1_before_fix/T4_mock_rpc_output.txt` and `test-fixtures/reconcile/T4_mock_rpc_output.txt`.
+6. `test_listener.py`: 8 → 13 tests (T4c two rounds; deep-enough block may be CONFIRMED_EMPTY; boundary is strict;
+   effective depth = max(user, 5); floor not configurable by env).
+
+Side effect: with the default `CONFIRM_DEPTH=10` the newest block read is `head-10`; if it is empty it is
+`UNAVAILABLE` for one round (strict `<`), i.e. confirmed ~2 s later. No data effect.
+
 ## v3 — 2026-10-05 (listener.py sha256 `0bd0618033e0ba07147406c3a4a63fff89999ca8bf47544aaeeb0bd88bd2eb99`)
 
 (intermediate commit 42f50af had `ae9aba16…` without the out-of-range guard; superseded.)

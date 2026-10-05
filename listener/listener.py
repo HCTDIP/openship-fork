@@ -21,6 +21,8 @@ returned no logs for m yet; the cursor moved past m. Now:
   * every block in a range gets an explicit state:
       DATA_PRESENT     logs returned -> written, cursor may pass it
       CONFIRMED_EMPTY  primary node AND a second, different node both answered "no logs"
+                       AND block < head - max(CONFIRM_DEPTH, MIN_SAFE_DEPTH)   (MIN_SAFE_DEPTH = 5, hard-coded)
+                       otherwise the block is UNAVAILABLE (cursor stops before it, retried next round)
       UNAVAILABLE      the second opinion could not be obtained -> cursor stops BEFORE it
     An answer containing logs outside the requested block range is void (Fetch ok=False):
     in the incident the node, asked for block m, returned block m-1's logs (m lost, m-1 doubled).
@@ -51,6 +53,14 @@ GZ = os.environ.get("GZIP", "1") != "0"
 MIN_FREE_MB = float(os.environ.get("MIN_FREE_MB", "30"))  # stop cleanly before the volume fills up
 MAX_RANGE = int(os.environ.get("MAX_RANGE", "30"))  # blocks per getLogs
 CONFIRM_DEPTH = int(os.environ.get("CONFIRM_DEPTH", "10"))  # never read the newest N blocks
+# Safety invariant, NOT configurable (T4c, 2026-10-05). Nodes lag at the tip together, so "two nodes
+# say empty" proves nothing there. CONFIRMED_EMPTY needs: >=2 nodes empty AND
+# block < head - max(CONFIRM_DEPTH, MIN_SAFE_DEPTH). CONFIRM_DEPTH is a performance knob; this floor is not.
+MIN_SAFE_DEPTH = 5
+
+
+def effective_depth():
+    return max(CONFIRM_DEPTH, MIN_SAFE_DEPTH)
 UA = {"User-Agent": "Mozilla/5.0", "Content-Type": "application/json"}
 
 CODE_HASH = hashlib.sha256(open(os.path.abspath(__file__), "rb").read()).hexdigest()
@@ -125,7 +135,7 @@ def get_logs_on(url, a, b):
         return Fetch(False, None, url, repr(e)[:300])
 
 
-def classify_range(a, b):
+def classify_range(a, b, head):
     """Read blocks a..b. Returns (primary_url, [(block, state, logs)]) for the settled prefix, plus the
     first UNAVAILABLE block (or None). Blocks after an UNAVAILABLE block are not looked at."""
     prim = None
@@ -160,6 +170,8 @@ def classify_range(a, b):
         if sec.logs:
             event("primary_empty_secondary_data", block=bn, primary=RPCS.index(prim.url), secondary=RPCS.index(sec.url), n=len(sec.logs))
             out.append((bn, BlockState.DATA_PRESENT, sec.logs))
+        elif not bn < head - effective_depth():  # both empty, but too close to the tip -> not proof
+            return prim.url, out, (bn, f"empty on 2 nodes but block {bn} not < head {head} - effective_depth {effective_depth()}")
         else:
             event("confirmed_empty", block=bn, primary=RPCS.index(prim.url), secondary=RPCS.index(sec.url))
             out.append((bn, BlockState.CONFIRMED_EMPTY, []))
@@ -250,14 +262,15 @@ def poll_once(st, wallets):
     """One round. Returns a dict describing what happened (used by tests and the status file)."""
     head = int(rpc("eth_blockNumber", [])[0], 16)
     last_confirmed = head - CONFIRM_DEPTH
-    st.update(pending_tip=head, last_confirmed=last_confirmed, confirm_depth=CONFIRM_DEPTH)
+    st.update(pending_tip=head, last_confirmed=last_confirmed, confirm_depth=CONFIRM_DEPTH, min_safe_depth=MIN_SAFE_DEPTH,
+              effective_depth=effective_depth())
     lp = st["last_processed"]
     if lp >= last_confirmed:  # nothing old enough yet -> wait, do not touch the cursor
         st["updated_at"] = time.time()
         save_state(st)
         return {"head": head, "skipped": True, "states": {}}
     a, b = lp + 1, min(last_confirmed, lp + MAX_RANGE)
-    used, settled, unavailable = classify_range(a, b)
+    used, settled, unavailable = classify_range(a, b, head)
     det = time.time()
     states = {bn: s for bn, s, _ in settled}
     if unavailable:

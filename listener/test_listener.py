@@ -173,6 +173,56 @@ class TipRaceTest(unittest.TestCase):
             L.poll_once(st, None)
         self.assertEqual(st["last_processed"], 240)
 
+    # --- T4c (2026-10-05): depth switched off AND all nodes lag at the tip ------------------
+    def test_depth0_all_nodes_lag_is_UNAVAILABLE_not_CONFIRMED_EMPTY(self):
+        """Two nodes both say "no logs" for the tip block. That is NOT proof of emptiness:
+        the MIN_SAFE_DEPTH floor must hold even with CONFIRM_DEPTH=0."""
+        L.CONFIRM_DEPTH = 0
+        nodes = dict(a=Node(256, 255), b=Node(256, 255), c=Node(256, 255))
+        self.use(**nodes)
+        st = self.state(254)
+        res = L.poll_once(st, None)
+        self.assertEqual(st["last_processed"], 255)
+        self.assertEqual(st["pending_tip"], 256)
+        self.assertEqual(res["states"][256], L.BlockState.UNAVAILABLE)
+        self.assertEqual(st["block_states"][L.BlockState.CONFIRMED_EMPTY], 0)
+        self.assertNotIn(256, self.ledger_blocks())
+        for n in nodes.values():                              # round 2: data for 256 arrives
+            n.has_upto = 256
+        res = L.poll_once(st, None)
+        self.assertEqual(res["states"][256], L.BlockState.DATA_PRESENT)
+        self.assertEqual(st["last_processed"], 256)
+        self.assertEqual(self.ledger_blocks(), {255, 256})
+
+    def test_floor_still_allows_confirmed_empty_when_deep_enough(self):
+        L.CONFIRM_DEPTH = 0
+        self.use(a=Node(261, 261, empty={255}), b=Node(261, 261, empty={255}), c=Node(261, 261))
+        st = self.state(254)
+        res = L.poll_once(st, None)
+        self.assertEqual(res["states"][255], L.BlockState.CONFIRMED_EMPTY)   # 255 < 261 - max(0,5) = 256
+        self.assertEqual(st["last_processed"], 261)
+
+    def test_floor_boundary_is_strict(self):
+        """block == head - effective_depth is NOT enough (rule is strict <)."""
+        L.CONFIRM_DEPTH = 0
+        self.use(a=Node(260, 260, empty={255}), b=Node(260, 260, empty={255}), c=Node(260, 260))
+        st = self.state(254)
+        res = L.poll_once(st, None)
+        self.assertEqual(res["states"][255], L.BlockState.UNAVAILABLE)       # 255 == 260 - 5
+        self.assertEqual(st["last_processed"], 254)
+
+    def test_effective_depth_is_max_of_user_and_floor(self):
+        for user, want in ((0, 5), (3, 5), (5, 5), (10, 10), (20, 20)):
+            L.CONFIRM_DEPTH = user
+            self.assertEqual(L.effective_depth(), want)
+
+    def test_floor_is_not_configurable(self):
+        L.CONFIRM_DEPTH = 0
+        self.assertEqual(L.MIN_SAFE_DEPTH, 5)
+        with open(L.__file__) as fh:
+            src = fh.read()
+        self.assertNotIn('environ.get("MIN_SAFE_DEPTH"', src)   # no env var can lower the floor
+
 
 if __name__ == "__main__":
     try:
