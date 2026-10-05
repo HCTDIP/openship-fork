@@ -1,0 +1,36 @@
+# Capability test for jevaudit reconcile. Test branch only; never writes raw/.
+name: jevaudit-capability
+on:
+  push:
+    branches: [test/jevaudit-capability]
+    paths: [test-fixtures/**, .github/workflows/jevaudit-capability.yml]
+permissions:
+  contents: read
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - name: config
+        run: cat test-fixtures/run_config.env >> "$GITHUB_ENV"; cat test-fixtures/run_config.env
+      - name: install jevaudit
+        run: pip install "jevaudit @ git+https://github.com/HCTDIP/jevaudit@${JEVAUDIT_REF}"
+      - name: suite (T1 T2 T3 T3.5 T3.6 T4 T5 + restore_and_verify)
+        if: env.MODE == 'suite'
+        env: {RUN_ID: "${{ github.run_id }}"}
+        run: bash test-fixtures/restore_and_verify.sh
+      - name: case 61 (cases/2026-10-03-tip-race, full 24h ledger)
+        if: env.MODE == 'case61'
+        run: bash test-fixtures/case61.sh
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: results
+          path: |
+            test-fixtures/results
+            test-fixtures/reconcile
+            test-fixtures/dirty-ledger/*.manifest.json
+            test-fixtures/case61
