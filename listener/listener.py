@@ -15,6 +15,18 @@ Latency = detect_ts (local clock when getLogs returned) - block_ts (chain block 
 Block timestamp comes from the log's `blockTimestamp` field when the RPC returns it;
 otherwise one cached eth_getBlockByNumber call per block (the only extra call).
 
+Tip-race fix (v3, 2026-10-05): the 24h run lost 5 blocks because the node said head=m but
+returned no logs for m yet; the cursor moved past m. Now:
+  * only blocks <= head - CONFIRM_DEPTH (default 10) are read;
+  * every block in a range gets an explicit state:
+      DATA_PRESENT     logs returned -> written, cursor may pass it
+      CONFIRMED_EMPTY  primary node AND a second, different node both answered "no logs"
+      UNAVAILABLE      the second opinion could not be obtained -> cursor stops BEFORE it
+    A failed call is a Fetch(ok=False); it is never turned into an empty list.
+  * checkpoint fields: last_processed / last_confirmed / pending_tip / confirm_depth / updated_at.
+Known limit: a node that returns SOME but not all logs of a block is not detected here;
+that is what the independent reconcile (jevaudit.audit) is for.
+
 Stdlib only. Memory is flat (no growing caches). Restart-safe: progress is kept in
 $LEDGER_DIR/chain_listener_state.json; the run stops DURATION_H hours after FIRST start.
 """
@@ -28,7 +40,7 @@ EXCHANGES = {
 }
 HERE = os.path.dirname(os.path.abspath(__file__))
 LEDGER_DIR = os.environ.get("LEDGER_DIR", "/var/minis/shared/ledgers")
-RPCS = [u.strip() for u in os.environ.get("RPCS", "https://polygon.drpc.org,https://1rpc.io/matic").split(",") if u.strip()]
+RPCS = [u.strip() for u in os.environ.get("RPCS", "https://polygon.drpc.org,https://1rpc.io/matic,https://polygon-bor-rpc.publicnode.com").split(",") if u.strip()]
 DURATION_H = float(os.environ.get("DURATION_H", "72"))
 TRACK = os.environ.get("TRACK", "wallets")  # wallets | all
 WALLETS_FILE = os.environ.get("WALLETS_FILE", os.path.join(HERE, "wallets.json"))
@@ -36,6 +48,7 @@ POLL_S = float(os.environ.get("POLL_S", "0.5"))
 GZ = os.environ.get("GZIP", "1") != "0"
 MIN_FREE_MB = float(os.environ.get("MIN_FREE_MB", "30"))  # stop cleanly before the volume fills up
 MAX_RANGE = int(os.environ.get("MAX_RANGE", "30"))  # blocks per getLogs
+CONFIRM_DEPTH = int(os.environ.get("CONFIRM_DEPTH", "10"))  # never read the newest N blocks
 UA = {"User-Agent": "Mozilla/5.0", "Content-Type": "application/json"}
 
 CODE_HASH = hashlib.sha256(open(os.path.abspath(__file__), "rb").read()).hexdigest()
@@ -61,19 +74,89 @@ def event(ev, **kw):
         f.write(canon({"ev": ev, "ts": time.time(), "code_hash": CODE_HASH, **kw}) + "\n")
 
 
+def _post(url, method, params):
+    """One JSON-RPC call to ONE node. Returns the `result`; raises on transport error or JSON-RPC error."""
+    req = urllib.request.Request(url, data=json.dumps({"jsonrpc": "2.0", "id": 1, "method": method, "params": params}).encode(), headers=UA)
+    with urllib.request.urlopen(req, timeout=20) as r:
+        res = json.loads(r.read())
+    if "result" in res and res["result"] is not None:
+        return res["result"]
+    raise RuntimeError(f"rpc error: {res.get('error')}")
+
+
 def rpc(method, params):
     err = None
     for u in RPCS:
         try:
-            req = urllib.request.Request(u, data=json.dumps({"jsonrpc": "2.0", "id": 1, "method": method, "params": params}).encode(), headers=UA)
-            with urllib.request.urlopen(req, timeout=20) as r:
-                res = json.loads(r.read())
-            if "result" in res and res["result"] is not None:
-                return res["result"], u
-            err = res.get("error")
+            return _post(u, method, params), u
         except Exception as e:
             err = repr(e)
     raise RuntimeError(f"all rpc failed: {err}")
+
+
+class BlockState:
+    DATA_PRESENT = "DATA_PRESENT"
+    UNAVAILABLE = "UNAVAILABLE"
+    CONFIRMED_EMPTY = "CONFIRMED_EMPTY"
+
+
+class Fetch:
+    """Result of eth_getLogs on ONE node. ok=False means "no answer" -- logs is None, never []."""
+    __slots__ = ("ok", "logs", "url", "err")
+
+    def __init__(self, ok, logs, url, err=None):
+        self.ok, self.logs, self.url, self.err = ok, logs, url, err
+
+
+def get_logs_on(url, a, b):
+    try:
+        res = _post(url, "eth_getLogs", [{"fromBlock": hex(a), "toBlock": hex(b), "topics": [TOPIC]}])
+        if not isinstance(res, list):
+            return Fetch(False, None, url, f"non-list result {type(res).__name__}")
+        return Fetch(True, [l for l in res if l.get("address", "").lower() in EXCHANGES], url)
+    except Exception as e:
+        return Fetch(False, None, url, repr(e)[:300])
+
+
+def classify_range(a, b):
+    """Read blocks a..b. Returns (primary_url, [(block, state, logs)]) for the settled prefix, plus the
+    first UNAVAILABLE block (or None). Blocks after an UNAVAILABLE block are not looked at."""
+    prim = None
+    errs = []
+    for u in RPCS:
+        f = get_logs_on(u, a, b)
+        if f.ok:
+            prim = f
+            break
+        errs.append(f.err)
+    if prim is None:
+        raise RuntimeError(f"all rpc failed getLogs {a}-{b}: {errs[-1] if errs else 'no RPCS'}")
+    by_block = {}
+    for l in prim.logs:
+        by_block.setdefault(int(l["blockNumber"], 16), []).append(l)
+    out = []
+    for bn in range(a, b + 1):
+        if by_block.get(bn):
+            out.append((bn, BlockState.DATA_PRESENT, by_block[bn]))
+            continue
+        # primary says "no logs" -> need a second, different node to agree
+        sec = None
+        for u in RPCS:
+            if u == prim.url:
+                continue
+            f = get_logs_on(u, bn, bn)
+            if f.ok:
+                sec = f
+                break
+        if sec is None:
+            return prim.url, out, (bn, "no second node answered")
+        if sec.logs:
+            event("primary_empty_secondary_data", block=bn, primary=RPCS.index(prim.url), secondary=RPCS.index(sec.url), n=len(sec.logs))
+            out.append((bn, BlockState.DATA_PRESENT, sec.logs))
+        else:
+            event("confirmed_empty", block=bn, primary=RPCS.index(prim.url), secondary=RPCS.index(sec.url))
+            out.append((bn, BlockState.CONFIRMED_EMPTY, []))
+    return prim.url, out, None
 
 
 _bts = {}  # tiny block->timestamp cache, cleared every range
@@ -145,6 +228,63 @@ def save_state(s):
     os.replace(tmp, STATE)
 
 
+def migrate_state(st):
+    """v2 state only had next_block. Add the v3 checkpoint fields without changing meaning."""
+    if "last_processed" not in st:
+        st["last_processed"] = st["next_block"] - 1
+    st.setdefault("last_confirmed", None)
+    st.setdefault("pending_tip", None)
+    st.setdefault("confirm_depth", CONFIRM_DEPTH)
+    st.setdefault("block_states", {BlockState.DATA_PRESENT: 0, BlockState.CONFIRMED_EMPTY: 0, BlockState.UNAVAILABLE: 0})
+    return st
+
+
+def poll_once(st, wallets):
+    """One round. Returns a dict describing what happened (used by tests and the status file)."""
+    head = int(rpc("eth_blockNumber", [])[0], 16)
+    last_confirmed = head - CONFIRM_DEPTH
+    st.update(pending_tip=head, last_confirmed=last_confirmed, confirm_depth=CONFIRM_DEPTH)
+    lp = st["last_processed"]
+    if lp >= last_confirmed:  # nothing old enough yet -> wait, do not touch the cursor
+        st["updated_at"] = time.time()
+        save_state(st)
+        return {"head": head, "skipped": True, "states": {}}
+    a, b = lp + 1, min(last_confirmed, lp + MAX_RANGE)
+    used, settled, unavailable = classify_range(a, b)
+    det = time.time()
+    states = {bn: s for bn, s, _ in settled}
+    if unavailable:
+        states[unavailable[0]] = BlockState.UNAVAILABLE
+        st["block_states"][BlockState.UNAVAILABLE] += 1
+        event("unavailable", block=unavailable[0], reason=unavailable[1], head=head)
+    recs = []
+    for bn, s, logs in settled:
+        st["block_states"][s] += 1
+        for l in logs:
+            if len(l.get("topics", [])) < 4:
+                continue
+            if wallets is not None and ("0x" + l["topics"][2][-40:]).lower() not in wallets:
+                continue
+            r = decode(l)
+            bts, bsrc = block_ts(l)
+            r.update(block_ts=bts, detect_ts=round(det, 3), latency_s=round(det - bts, 3),
+                     head=head, rpc=RPCS.index(used), input_hash=sha(l), code_hash=CODE_HASH)
+            if bsrc != "log":
+                r["ts_src"] = bsrc
+            r["output_hash"] = sha(r)
+            recs.append(r)
+    _bts.clear()
+    if recs:
+        write_ledger(det, recs)
+    if settled:  # cursor moves only over DATA_PRESENT / CONFIRMED_EMPTY blocks
+        st["last_processed"] = settled[-1][0]
+    st["next_block"] = st["last_processed"] + 1
+    st["fills"] += len(recs)
+    st["updated_at"] = det
+    save_state(st)
+    return {"head": head, "skipped": False, "states": states, "n_recs": len(recs), "logs_seen": sum(len(x[2]) for x in settled)}
+
+
 def main():
     os.makedirs(LEDGER_DIR, exist_ok=True)
     wallets = None
@@ -153,60 +293,42 @@ def main():
     st = load_state()
     if st is None:
         head = int(rpc("eth_blockNumber", [])[0], 16)
-        st = {"start_ts": time.time(), "next_block": head - 2, "fills": 0, "code_hash_first": CODE_HASH}
+        st = {"start_ts": time.time(), "next_block": head - CONFIRM_DEPTH, "fills": 0, "code_hash_first": CODE_HASH}
+        migrate_state(st)
         save_state(st)
-        event("start_new", next_block=st["next_block"], track=TRACK, n_wallets=len(wallets or []), duration_h=DURATION_H)
+        event("start_new", next_block=st["next_block"], track=TRACK, n_wallets=len(wallets or []), duration_h=DURATION_H, confirm_depth=CONFIRM_DEPTH)
     else:
-        event("resume", next_block=st["next_block"], fills=st["fills"])
+        migrate_state(st)
+        event("resume", next_block=st["next_block"], fills=st["fills"], confirm_depth=CONFIRM_DEPTH)
     end_ts = st["start_ts"] + DURATION_H * 3600
     if time.time() >= end_ts:
         log("run already finished (DURATION_H reached); exiting 0")
         return
-    log(f"listener v2 code_hash={CODE_HASH[:12]} track={TRACK} wallets={len(wallets or [])} ledger={LEDGER_DIR} next_block={st['next_block']}")
+    log(f"listener v3 code_hash={CODE_HASH[:12]} track={TRACK} wallets={len(wallets or [])} ledger={LEDGER_DIR} next_block={st['next_block']} confirm_depth={CONFIRM_DEPTH}")
     errs = 0; last_status = 0; polls = 0; global_fills = 0
     while time.time() < end_ts:
         try:
-            head = int(rpc("eth_blockNumber", [])[0], 16)
-            nxt = st["next_block"]
-            if head < nxt:
-                time.sleep(1); continue
-            to = min(head, nxt + MAX_RANGE - 1)
-            logs, used = rpc("eth_getLogs", [{"fromBlock": hex(nxt), "toBlock": hex(to), "topics": [TOPIC]}])
-            det = time.time()
-            polls += 1; global_fills += len(logs)
-            recs = []
-            for l in logs:
-                if len(l.get("topics", [])) < 4 or l["address"].lower() not in EXCHANGES:
-                    continue
-                if wallets is not None and ("0x" + l["topics"][2][-40:]).lower() not in wallets:
-                    continue
-                r = decode(l)
-                bts, bsrc = block_ts(l)
-                r.update(block_ts=bts, detect_ts=round(det, 3), latency_s=round(det - bts, 3),
-                         head=head, rpc=RPCS.index(used), input_hash=sha(l), code_hash=CODE_HASH)
-                if bsrc != "log":
-                    r["ts_src"] = bsrc
-                r["output_hash"] = sha(r)
-                recs.append(r)
-            _bts.clear()
-            if recs:
-                write_ledger(det, recs)
-            st["next_block"] = to + 1
-            st["fills"] += len(recs)
-            save_state(st)
+            res = poll_once(st, wallets)
+            if res["skipped"]:
+                time.sleep(max(POLL_S, 1)); continue
+            polls += 1; global_fills += res["logs_seen"]
             errs = 0
-            if det - last_status > 30:
-                last_status = det
+            now = time.time()
+            if now - last_status > 30:
+                last_status = now
                 free_mb = shutil.disk_usage(LEDGER_DIR).free / 1e6
                 if free_mb < MIN_FREE_MB:
                     event("disk_low_stop", free_mb=round(free_mb, 1), fills=st["fills"])
                     log(f"disk almost full ({free_mb:.0f} MB free) -> clean stop")
                     break
                 with open(STATUS, "w") as f:
-                    json.dump({"ts": det, "head": head, "next_block": st["next_block"], "lag_blocks": head - to,
+                    json.dump({"ts": now, "head": res["head"], "next_block": st["next_block"],
+                               "last_processed": st["last_processed"], "last_confirmed": st["last_confirmed"],
+                               "pending_tip": st["pending_tip"], "confirm_depth": CONFIRM_DEPTH,
+                               "lag_blocks": res["head"] - st["last_processed"], "block_states": st["block_states"],
                                "fills_total": st["fills"], "polls_since_boot": polls,
                                "global_fills_since_boot": global_fills, "free_mb": round(free_mb, 1), "ends_at": end_ts}, f)
-                log(f"head={head} behind={head - to} fills_total={st['fills']}")
+                log(f"head={res['head']} last_processed={st['last_processed']} fills_total={st['fills']} states={st['block_states']}")
         except Exception as e:
             errs += 1
             event("error", err=repr(e)[:500], consecutive=errs)

@@ -1,4 +1,4 @@
-# chain-listener v2 (只读，不下单，不调 Polymarket API)
+# chain-listener v3 (只读，不下单，不调 Polymarket API)
 
 - 只监听 Polygon 上 3 个 Polymarket 交易所合约的 OrderFilled，maker 属于 wallets.json（2,182 个）才记。
 - 账本：$LEDGER_DIR/chain_listener_<YYYYMMDD>.jsonl.gz（UTC 日期，gzip，每轮 flush+fsync）。
@@ -9,3 +9,7 @@
 
 运行：`python listener.py`（环境变量 LEDGER_DIR / DURATION_H / TRACK=all|wallets / RPCS）
 报告：`python report.py <LEDGER_DIR> --enrich`（--enrich 才离线查 Gamma 补 market，不在监听时调用）
+
+## v3 (2026-10-05)
+- 只读 head-CONFIRM_DEPTH（默认 10）以内的区块；每个区块三种状态 DATA_PRESENT / CONFIRMED_EMPTY / UNAVAILABLE，见 CHANGELOG.md。
+- 测试：`python -m unittest test_listener -v`
