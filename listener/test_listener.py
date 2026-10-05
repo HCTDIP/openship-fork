@@ -30,8 +30,9 @@ class Node:
     """Fake node: `head` it reports, `has_upto` = highest block it actually has logs for.
     down=True -> every call raises (no answer)."""
 
-    def __init__(self, head, has_upto, down=False, empty=()):
+    def __init__(self, head, has_upto, down=False, empty=(), stale_tip=False):
         self.head, self.has_upto, self.down, self.empty = head, has_upto, down, set(empty)
+        self.stale_tip = stale_tip  # incident behaviour: asked beyond has_upto -> returns has_upto's logs
 
     def call(self, method, params):
         if self.down:
@@ -40,6 +41,8 @@ class Node:
             return hex(self.head)
         if method == "eth_getLogs":
             a, b = int(params[0]["fromBlock"], 16), int(params[0]["toBlock"], 16)
+            if self.stale_tip and a > self.has_upto:
+                return [mk_log(self.has_upto)]
             return [mk_log(bn) for bn in range(a, b + 1) if bn <= self.has_upto and bn not in self.empty]
         raise AssertionError(method)
 
@@ -117,6 +120,27 @@ class TipRaceTest(unittest.TestCase):
         self.assertEqual(res["states"][256], L.BlockState.DATA_PRESENT)
         self.assertEqual(st["last_processed"], 256)
         self.assertEqual(self.ledger_blocks(), {255, 256})
+
+    def test_depth0_incident_exact_node_returns_previous_block(self):
+        """Exactly what the 24h ledger shows: request [256,256], node answers with block 255's logs."""
+        L.CONFIRM_DEPTH = 0
+        nodes = dict(a=Node(256, 255, stale_tip=True), b=Node(256, 255, stale_tip=True), c=Node(256, 255, stale_tip=True))
+        self.use(**nodes)
+        st = self.state(254)
+        L.poll_once(st, None)                                 # reads 255..256
+        self.assertEqual(st["last_processed"], 255)
+        with self.assertRaises(RuntimeError):                 # now asks [256,256] -> every node returns 255's
+            L.poll_once(st, None)                             # logs -> all answers void -> no cursor move
+        self.assertEqual(st["last_processed"], 255)
+        self.assertEqual(st["pending_tip"], 256)
+        blocks = []
+        L.close_ledger()
+        for f in os.listdir(_TMP):
+            if f.startswith("chain_listener_2"):
+                with gzip.open(os.path.join(_TMP, f), "rt") as g:
+                    blocks += [json.loads(x)["block"] for x in g]
+        self.assertEqual(blocks.count(255), 1)                # 255 not written twice
+        self.assertNotIn(256, blocks)
 
     def test_two_nodes_empty_is_CONFIRMED_EMPTY(self):
         L.CONFIRM_DEPTH = 10

@@ -22,6 +22,8 @@ returned no logs for m yet; the cursor moved past m. Now:
       DATA_PRESENT     logs returned -> written, cursor may pass it
       CONFIRMED_EMPTY  primary node AND a second, different node both answered "no logs"
       UNAVAILABLE      the second opinion could not be obtained -> cursor stops BEFORE it
+    An answer containing logs outside the requested block range is void (Fetch ok=False):
+    in the incident the node, asked for block m, returned block m-1's logs (m lost, m-1 doubled).
     A failed call is a Fetch(ok=False); it is never turned into an empty list.
   * checkpoint fields: last_processed / last_confirmed / pending_tip / confirm_depth / updated_at.
 Known limit: a node that returns SOME but not all logs of a block is not detected here;
@@ -113,7 +115,12 @@ def get_logs_on(url, a, b):
         res = _post(url, "eth_getLogs", [{"fromBlock": hex(a), "toBlock": hex(b), "topics": [TOPIC]}])
         if not isinstance(res, list):
             return Fetch(False, None, url, f"non-list result {type(res).__name__}")
-        return Fetch(True, [l for l in res if l.get("address", "").lower() in EXCHANGES], url)
+        out = [l for l in res if l.get("address", "").lower() in EXCHANGES]
+        bad = sorted({int(l["blockNumber"], 16) for l in out} - set(range(a, b + 1)))
+        if bad:  # 2026-10-03: asked for m, node returned m-1's logs -> the whole answer is void
+            event("out_of_range_logs", url=RPCS.index(url) if url in RPCS else url, asked=[a, b], got=bad[:5])
+            return Fetch(False, None, url, f"out-of-range logs {bad[:5]} for {a}-{b}")
+        return Fetch(True, out, url)
     except Exception as e:
         return Fetch(False, None, url, repr(e)[:300])
 
