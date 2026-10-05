@@ -1,0 +1,12 @@
+total 135996
+drwxr-xr-x    2 root     root          4096 Oct  3 12:22 .
+drwxr-xr-x    4 root     root          4096 Oct  2 10:46 ..
+-rw-r--r--    1 root     root             0 Oct  3 12:22 _ls.txt
+-rw-r--r--    1 root     root      84709795 Oct  3 00:00 chain_listener_20261002.jsonl.gz
+-rw-r--r--    1 root     root      54458482 Oct  3 12:15 chain_listener_20261003.jsonl.gz
+-rw-r--r--    1 root     root            18 Oct  3 12:15 chain_listener_DONE
+-rw-r--r--    1 root     root          1198 Oct  3 12:15 chain_listener_events.jsonl
+-rw-r--r--    1 root     root          4294 Oct  2 11:54 chain_listener_report.json
+-rw-r--r--    1 root     root           536 Oct  2 11:54 chain_listener_report.md
+-rw-r--r--    1 root     root           160 Oct  3 12:15 chain_listener_state.json
+-rw-r--r--    1 root     root           220 Oct  3 12:15 chain_listener_status.json
