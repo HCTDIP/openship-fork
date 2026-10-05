@@ -1,0 +1,64 @@
+
+=== T4a production config (CONFIRM_DEPTH=10) ===
+round 1: head=256, node data up to 255
+    rpc a eth_blockNumber -> 256
+    rpc a eth_getLogs(241,246) -> 6 logs, blocks [241, '..', 246]
+  -> states {244: 'DATA_PRESENT', 245: 'DATA_PRESENT', 246: 'DATA_PRESENT'} skipped=False
+  -> last_processed=246 pending_tip=256 last_confirmed=246 block_states={'DATA_PRESENT': 6, 'CONFIRMED_EMPTY': 0, 'UNAVAILABLE': 0}
+  ASSERT last_processed == 246: OK
+  ASSERT pending_tip == 256: OK
+  ASSERT 256 not marked DATA_PRESENT/CONFIRMED_EMPTY: OK
+  ASSERT 256 not in ledger: OK
+round 2: head=266, block 256 now has data
+    rpc a eth_blockNumber -> 266
+    rpc a eth_getLogs(247,256) -> 10 logs, blocks [247, '..', 256]
+  -> states {254: 'DATA_PRESENT', 255: 'DATA_PRESENT', 256: 'DATA_PRESENT'} skipped=False
+  -> last_processed=256 pending_tip=266 last_confirmed=256 block_states={'DATA_PRESENT': 16, 'CONFIRMED_EMPTY': 0, 'UNAVAILABLE': 0}
+  ASSERT last_processed == 256: OK
+  ASSERT 256 written exactly once: OK
+  ASSERT no block written twice: OK
+RESULT T4a production config: PASS
+
+=== T4b depth off, only node a reachable (literal spec) (CONFIRM_DEPTH=0) ===
+round 1: head=256, node data up to 255
+    rpc a eth_blockNumber -> 256
+    rpc a eth_getLogs(255,256) -> 1 logs, blocks [255]
+    rpc b eth_getLogs -> NO ANSWER (timeout)
+    rpc c eth_getLogs -> NO ANSWER (timeout)
+  -> states {255: 'DATA_PRESENT', 256: 'UNAVAILABLE'} skipped=False
+  -> last_processed=255 pending_tip=256 last_confirmed=256 block_states={'DATA_PRESENT': 1, 'CONFIRMED_EMPTY': 0, 'UNAVAILABLE': 1}
+  ASSERT last_processed == 255: OK
+  ASSERT pending_tip == 256: OK
+  ASSERT 256 not marked DATA_PRESENT/CONFIRMED_EMPTY: OK
+  ASSERT 256 not in ledger: OK
+round 2: head=256, block 256 now has data
+    rpc a eth_blockNumber -> 256
+    rpc a eth_getLogs(256,256) -> 1 logs, blocks [256]
+  -> states {256: 'DATA_PRESENT'} skipped=False
+  -> last_processed=256 pending_tip=256 last_confirmed=256 block_states={'DATA_PRESENT': 2, 'CONFIRMED_EMPTY': 0, 'UNAVAILABLE': 1}
+  ASSERT last_processed == 256: OK
+  ASSERT 256 written exactly once: OK
+  ASSERT no block written twice: OK
+RESULT T4b depth off, only node a reachable (literal spec): PASS
+
+=== T4c depth off, all 3 nodes lag at the tip (edge) (CONFIRM_DEPTH=0) ===
+round 1: head=256, node data up to 255
+    rpc a eth_blockNumber -> 256
+    rpc a eth_getLogs(255,256) -> 1 logs, blocks [255]
+    rpc b eth_getLogs(256,256) -> 0 logs, blocks []
+  -> states {255: 'DATA_PRESENT', 256: 'CONFIRMED_EMPTY'} skipped=False
+  -> last_processed=256 pending_tip=256 last_confirmed=256 block_states={'DATA_PRESENT': 1, 'CONFIRMED_EMPTY': 1, 'UNAVAILABLE': 0}
+  ASSERT last_processed == 255: FAILED
+  ASSERT pending_tip == 256: OK
+  ASSERT 256 not marked DATA_PRESENT/CONFIRMED_EMPTY: FAILED
+  ASSERT 256 not in ledger: OK
+round 2: head=256, block 256 now has data
+    rpc a eth_blockNumber -> 256
+  -> states {} skipped=True
+  -> last_processed=256 pending_tip=256 last_confirmed=256 block_states={'DATA_PRESENT': 1, 'CONFIRMED_EMPTY': 1, 'UNAVAILABLE': 0}
+  ASSERT last_processed == 256: OK
+  ASSERT 256 written exactly once: FAILED
+  ASSERT no block written twice: OK
+RESULT T4c depth off, all 3 nodes lag at the tip (edge): FAIL
+
+{"T4a": true, "T4b": true, "T4c": false}

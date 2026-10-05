@@ -1,0 +1,23 @@
+{
+ "fixture_id": "T3.6",
+ "partitions": {
+  "expected": [
+   "20261002",
+   "20261003"
+  ],
+  "present": [
+   "20261002"
+  ],
+  "missing": [
+   "20261003"
+  ]
+ },
+ "actual": [
+  {
+   "code": "MISSING_DAY_PARTITION",
+   "day": "20261003",
+   "file": "chain_listener_20261003.jsonl.gz"
+  }
+ ],
+ "pass": true
+}

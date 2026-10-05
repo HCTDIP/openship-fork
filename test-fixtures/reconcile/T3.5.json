@@ -1,0 +1,72 @@
+{
+ "fixture_id": "T3.5",
+ "partitions": {
+  "expected": [
+   "20261002",
+   "20261003"
+  ],
+  "present": [
+   "20261002",
+   "20261003"
+  ],
+  "missing": []
+ },
+ "tail": {
+  "range": [
+   94883008,
+   94883047
+  ],
+  "ledger_last_block": 94883042,
+  "integrity": {
+   "ok": true,
+   "n_records": 367,
+   "n_failed": 0
+  },
+  "counts": {
+   "ledger_fills": 367,
+   "chain_fills_all": 1948,
+   "chain_fills_tracked": 418,
+   "matched": 367,
+   "missing_in_ledger": 51,
+   "extra_in_ledger": 0,
+   "input_hash_mismatch": 0
+  },
+  "multi_node_checked_blocks": 15,
+  "node_agreement_sample": {
+   "blocks": 10,
+   "all_nodes_identical": 10
+  },
+  "elapsed_s": 34.2,
+  "findings": [
+   {
+    "code": "TRAILING_GAP",
+    "ledger_last_block": 94883042,
+    "expected_last_block": 94883047,
+    "blocks": [
+     94883043,
+     94883044,
+     94883045,
+     94883046,
+     94883047
+    ],
+    "missing_fills": 51
+   }
+  ]
+ },
+ "actual": [
+  {
+   "code": "TRAILING_GAP",
+   "ledger_last_block": 94883042,
+   "expected_last_block": 94883047,
+   "blocks": [
+    94883043,
+    94883044,
+    94883045,
+    94883046,
+    94883047
+   ],
+   "missing_fills": 51
+  }
+ ],
+ "pass": true
+}

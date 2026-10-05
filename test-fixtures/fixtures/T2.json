@@ -1,0 +1,41 @@
+{
+ "fixture_id": "T2",
+ "target": "chain_listener_20261003.jsonl.gz",
+ "original_file_sha256": "16fce6de4b5ec6217aa94da677c00b01462eed506eda63bfb1773401603b7be5",
+ "original_content_sha256": "28e5a7f504255aeb1f354673e3bcfcc1a315c17eb900a4480d64def7bb1863f0",
+ "ops": [
+  {
+   "op": "delete",
+   "index": 66435,
+   "line": "{\"block\":94860001,\"block_ts\":1790995142,\"code_hash\":\"68e29fd1e5973ded6efd7c8eab14501104450f81393521c9d273d816f7349b36\",\"detect_ts\":1790995141.659,\"exchange\":\"0xe111180000d2663c0091e4f400237545b87b996b\",\"fee_raw\":0,\"head\":94860001,\"input_hash\":\"cf0ee7f913981697f34cae1e3d23d5f1f806960ebf8f33c6d091ed2754399357\",\"latency_s\":-0.341,\"log_index\":224,\"output_hash\":\"49b95dda0f4a07d783020d373deb2a4010d2ea1bd223626da0d6515a868022bd\",\"price\":0.1,\"rpc\":0,\"shares\":5.0,\"side\":\"BUY\",\"taker\":\"0xd91e4f1b1490cff64477c039ee7e53ab9cdabf1d\",\"token_id\":\"72787038628073681641146339638788304578261039614929598140790617030568142985994\",\"tx\":\"0x773c784c221fc71236b18dcbb25faea026d704fc45f06e13be6dad0c3a0050c8\",\"usdc\":0.5,\"wallet\":\"0xf8af03f1e68ee7162db8983f0d6dd0dc869854c6\"}\n"
+  }
+ ],
+ "inject": "delete 1 real fill: block 94860001, tx 0x773c784c221fc71236b18dcbb25faea026d704fc45f06e13be6dad0c3a0050c8, log_index 224",
+ "expected": "exactly 1 x MISSING_FROM_LEDGER block=94860001 tx=0x773c784c221fc71236b18dcbb25faea026d704fc45f06e13be6dad0c3a0050c8",
+ "want": {
+  "code": "MISSING_FROM_LEDGER",
+  "block": 94860001,
+  "tx": "0x773c784c221fc71236b18dcbb25faea026d704fc45f06e13be6dad0c3a0050c8",
+  "log_index": 224
+ },
+ "modified_file_sha256": "19b5923daf328689511601a40b47ad2d10266cb038b2bc417f464aa8ac6faafc",
+ "modified_content_sha256": "c13e617b170eadbb030c38cc927e4fc181d86f07999ed4f428b17cd0cda866d9",
+ "restore": {
+  "chain_listener_20261002.jsonl.gz": {
+   "kind": "file",
+   "restored_sha256": "5d57a98d53052c4f9490f6478ebaa2b3917282207dfae21fdca0fe01bf3a7e22",
+   "original_sha256": "5d57a98d53052c4f9490f6478ebaa2b3917282207dfae21fdca0fe01bf3a7e22",
+   "equal": true
+  },
+  "chain_listener_20261003.jsonl.gz": {
+   "kind": "content",
+   "restored_sha256": "28e5a7f504255aeb1f354673e3bcfcc1a315c17eb900a4480d64def7bb1863f0",
+   "original_sha256": "28e5a7f504255aeb1f354673e3bcfcc1a315c17eb900a4480d64def7bb1863f0",
+   "equal": true
+  }
+ },
+ "production_untouched": {
+  "chain_listener_20261002.jsonl.gz": true,
+  "chain_listener_20261003.jsonl.gz": true
+ }
+}

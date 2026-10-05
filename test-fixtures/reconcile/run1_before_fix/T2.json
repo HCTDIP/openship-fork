@@ -1,0 +1,60 @@
+{
+ "fixture_id": "T2",
+ "partitions": {
+  "expected": [
+   "20261002",
+   "20261003"
+  ],
+  "present": [
+   "20261002",
+   "20261003"
+  ],
+  "missing": []
+ },
+ "middle": {
+  "range": [
+   94860000,
+   94860039
+  ],
+  "ledger_last_block": 94883047,
+  "integrity": {
+   "ok": true,
+   "n_records": 463,
+   "n_failed": 0
+  },
+  "counts": {
+   "ledger_fills": 463,
+   "chain_fills_all": 2507,
+   "chain_fills_tracked": 464,
+   "matched": 463,
+   "missing_in_ledger": 1,
+   "extra_in_ledger": 0,
+   "input_hash_mismatch": 0
+  },
+  "multi_node_checked_blocks": 11,
+  "node_agreement_sample": {
+   "blocks": 10,
+   "all_nodes_identical": 10
+  },
+  "elapsed_s": 67.1,
+  "findings": [
+   {
+    "code": "MISSING_FROM_LEDGER",
+    "block": 94860001,
+    "tx": "0x773c784c221fc71236b18dcbb25faea026d704fc45f06e13be6dad0c3a0050c8",
+    "log_index": 224,
+    "wallet": "0xf8af03f1e68ee7162db8983f0d6dd0dc869854c6"
+   }
+  ]
+ },
+ "actual": [
+  {
+   "code": "MISSING_FROM_LEDGER",
+   "block": 94860001,
+   "tx": "0x773c784c221fc71236b18dcbb25faea026d704fc45f06e13be6dad0c3a0050c8",
+   "log_index": 224,
+   "wallet": "0xf8af03f1e68ee7162db8983f0d6dd0dc869854c6"
+  }
+ ],
+ "pass": true
+}

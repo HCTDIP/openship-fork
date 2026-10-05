@@ -1,0 +1,87 @@
+{
+ "fixture_id": "T5",
+ "partitions": {
+  "expected": [
+   "20261002",
+   "20261003"
+  ],
+  "present": [
+   "20261002",
+   "20261003"
+  ],
+  "missing": []
+ },
+ "middle": {
+  "range": [
+   94860000,
+   94860039
+  ],
+  "ledger_last_block": 94883047,
+  "integrity": {
+   "ok": true,
+   "n_records": 464,
+   "n_failed": 0
+  },
+  "counts": {
+   "ledger_fills": 464,
+   "chain_fills_all": 2507,
+   "chain_fills_tracked": 464,
+   "matched": 464,
+   "missing_in_ledger": 0,
+   "extra_in_ledger": 0,
+   "input_hash_mismatch": 0
+  },
+  "multi_node_checked_blocks": 10,
+  "node_agreement_sample": {
+   "blocks": 10,
+   "all_nodes_identical": 10
+  },
+  "elapsed_s": 15.7,
+  "findings": [
+   {
+    "code": "PASS"
+   }
+  ]
+ },
+ "tail": {
+  "range": [
+   94883008,
+   94883047
+  ],
+  "ledger_last_block": 94883047,
+  "integrity": {
+   "ok": true,
+   "n_records": 418,
+   "n_failed": 0
+  },
+  "counts": {
+   "ledger_fills": 418,
+   "chain_fills_all": 1948,
+   "chain_fills_tracked": 418,
+   "matched": 418,
+   "missing_in_ledger": 0,
+   "extra_in_ledger": 0,
+   "input_hash_mismatch": 0
+  },
+  "multi_node_checked_blocks": 10,
+  "node_agreement_sample": {
+   "blocks": 10,
+   "all_nodes_identical": 10
+  },
+  "elapsed_s": 27.2,
+  "findings": [
+   {
+    "code": "PASS"
+   }
+  ]
+ },
+ "actual": [
+  {
+   "code": "PASS"
+  },
+  {
+   "code": "PASS"
+  }
+ ],
+ "pass": true
+}

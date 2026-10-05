@@ -1,0 +1,296 @@
+{
+ "fixture_id": "T3.5",
+ "target": "chain_listener_20261003.jsonl.gz",
+ "original_file_sha256": "16fce6de4b5ec6217aa94da677c00b01462eed506eda63bfb1773401603b7be5",
+ "original_content_sha256": "28e5a7f504255aeb1f354673e3bcfcc1a315c17eb900a4480d64def7bb1863f0",
+ "ops": [
+  {
+   "op": "delete",
+   "index": 301133,
+   "line": "{\"block\":94883043,\"block_ts\":1791029705,\"code_hash\":\"68e29fd1e5973ded6efd7c8eab14501104450f81393521c9d273d816f7349b36\",\"detect_ts\":1791029704.145,\"exchange\":\"0xe111180000d2663c0091e4f400237545b87b996b\",\"fee_raw\":49950,\"head\":94883043,\"input_hash\":\"392eb17c27f374c49186610644269a5d064a43b079f95f6786501a6528224cff\",\"latency_s\":-0.855,\"log_index\":260,\"output_hash\":\"748264411f2b9fc4fa5a853175e751d049cb8575800fa6ca72e34453dccc6f8c\",\"price\":0.001,\"rpc\":0,\"shares\":1000.0,\"side\":\"BUY\",\"taker\":\"0xe111180000d2663c0091e4f400237545b87b996b\",\"token_id\":\"101631714183524389105747061023852532399017168724189635426182650107240401696415\",\"tx\":\"0xe5079251311d43c640e8dba63ea24107f93e27416cd24079075524adb4c29541\",\"usdc\":1.0,\"wallet\":\"0xa278b41b5afda5d18da683eb7f851a7b2dc13369\"}\n"
+  },
+  {
+   "op": "delete",
+   "index": 301134,
+   "line": "{\"block\":94883043,\"block_ts\":1791029705,\"code_hash\":\"68e29fd1e5973ded6efd7c8eab14501104450f81393521c9d273d816f7349b36\",\"detect_ts\":1791029704.145,\"exchange\":\"0xe111180000d2663c0091e4f400237545b87b996b\",\"fee_raw\":0,\"head\":94883043,\"input_hash\":\"258331ffd135e1f18f53d548a522fa4e329459c88c144ca9666076e31f5357d2\",\"latency_s\":-0.855,\"log_index\":316,\"output_hash\":\"b0aa0d6383476daea17fb247cabb4a0f1a9d4ac8914cf16a0b9b9b8d7797d9bb\",\"price\":0.45,\"rpc\":0,\"shares\":1.818182,\"side\":\"BUY\",\"taker\":\"0x7dc646bff8a26b4fbe4af5f8ea830c949c72b32c\",\"token_id\":\"40466024551638929367896793589703917734293288497206010742838683553994137702833\",\"tx\":\"0x4e06549f8235da154dd1eb7810b00b2f5cf9a8101c2ff99ed190383d3a643bae\",\"usdc\":0.818182,\"wallet\":\"0x6738a4628a29ce5b7f51beb226618b1aee5cc6fb\"}\n"
+  },
+  {
+   "op": "delete",
+   "index": 301135,
+   "line": "{\"block\":94883043,\"block_ts\":1791029705,\"code_hash\":\"68e29fd1e5973ded6efd7c8eab14501104450f81393521c9d273d816f7349b36\",\"detect_ts\":1791029704.145,\"exchange\":\"0xe111180000d2663c0091e4f400237545b87b996b\",\"fee_raw\":0,\"head\":94883043,\"input_hash\":\"38e0dbd00d6acaf85e8024a61ada595f9828ca7e9734cff268137d3153648edc\",\"latency_s\":-0.855,\"log_index\":687,\"output_hash\":\"ed70f4dd13682e7afe41e179d626d3cb72da220b1d4e5b7b5677d914e633cc8c\",\"price\":0.53,\"rpc\":0,\"shares\":9.0,\"side\":\"BUY\",\"taker\":\"0x23cad2f11c0cb69f77c92864018d1e6412745d8c\",\"token_id\":\"65952655585195961501487539811248535858896754779826519811467724185986149209141\",\"tx\":\"0x1a8162a96d90e3694e7c291adb9a7bbe45e92a43c956539895b383f4b8061bae\",\"usdc\":4.77,\"wallet\":\"0x85f4ad3e1954473600e87f527adf90aa8a1d8f34\"}\n"
+  },
+  {
+   "op": "delete",
+   "index": 301136,
+   "line": "{\"block\":94883043,\"block_ts\":1791029705,\"code_hash\":\"68e29fd1e5973ded6efd7c8eab14501104450f81393521c9d273d816f7349b36\",\"detect_ts\":1791029704.145,\"exchange\":\"0xe111180000d2663c0091e4f400237545b87b996b\",\"fee_raw\":0,\"head\":94883043,\"input_hash\":\"0da8c907f3c06f8f1b6e00b129b531a2704dabc2381ff9ec77c96c5b83ff7d83\",\"latency_s\":-0.855,\"log_index\":709,\"output_hash\":\"b9ede94b1e3b1fb834615021ec5493bc88d653cce569f0afb56eb2df642ccf17\",\"price\":0.999,\"rpc\":0,\"shares\":110.79,\"side\":\"BUY\",\"taker\":\"0xe8e086f7ef06af27889edfb5026e1453c61d7eec\",\"token_id\":\"66980062784350373924994106301834318685446949982185278564190451882226099581655\",\"tx\":\"0x1f21c42475c51b861143c1ef11dff4336ecc6353e124ea26c0ab88580be41871\",\"usdc\":110.67921,\"wallet\":\"0xfc25f141ed27bb1787338d2c4e7f51e3a15e1f7f\"}\n"
+  },
+  {
+   "op": "delete",
+   "index": 301137,
+   "line": "{\"block\":94883044,\"block_ts\":1791029706,\"code_hash\":\"68e29fd1e5973ded6efd7c8eab14501104450f81393521c9d273d816f7349b36\",\"detect_ts\":1791029705.84,\"exchange\":\"0xe111180000d2663c0091e4f400237545b87b996b\",\"fee_raw\":0,\"head\":94883044,\"input_hash\":\"c00ece68e47b76f936966349f193ccec55fffb5148208d696d5b5896a66277f0\",\"latency_s\":-0.16,\"log_index\":228,\"output_hash\":\"6c3040324cc3b7fb3691a4d32688816e7ca5756c2fbbbb6cc8613b29e38f4cd1\",\"price\":0.89,\"rpc\":0,\"shares\":9.09091,\"side\":\"BUY\",\"taker\":\"0xe8101d7b3968e616f580757495bf717e444b581c\",\"token_id\":\"45813236737481329858972908535269555068729780039383035581348691404368290885305\",\"tx\":\"0xe6737a92e28863e12d53ae667cfc87f1d5e57610925283a81083d2d58a3e76e0\",\"usdc\":8.09091,\"wallet\":\"0x6e2c0e9474af7d720e5aba2a5b0bb6f723b7787c\"}\n"
+  },
+  {
+   "op": "delete",
+   "index": 301138,
+   "line": "{\"block\":94883044,\"block_ts\":1791029706,\"code_hash\":\"68e29fd1e5973ded6efd7c8eab14501104450f81393521c9d273d816f7349b36\",\"detect_ts\":1791029705.84,\"exchange\":\"0xe111180000d2663c0091e4f400237545b87b996b\",\"fee_raw\":0,\"head\":94883044,\"input_hash\":\"a0b4acbc6d61478297d510cf19453c5d16338ae0e28632f5ad44765c6b0106ab\",\"latency_s\":-0.16,\"log_index\":267,\"output_hash\":\"53b815f16b79bafefa0c34c500e4c52f344e0eafe9f181612bb0f2d9f5c4c36a\",\"price\":0.46,\"rpc\":0,\"shares\":18.518519,\"side\":\"BUY\",\"taker\":\"0xd7c4533e17f070af1015ed8635ee08b2927a0e17\",\"token_id\":\"52436255631603866947682807489087889574477905283406836661907835449119494155563\",\"tx\":\"0x541c4d096b265ec8f4467d984c5ef88b59e6fd6fe2cb815401655c1d8a887824\",\"usdc\":8.518519,\"wallet\":\"0x32ed2e546b187ca15e2841edc82b22c713cf8ec3\"}\n"
+  },
+  {
+   "op": "delete",
+   "index": 301139,
+   "line": "{\"block\":94883044,\"block_ts\":1791029706,\"code_hash\":\"68e29fd1e5973ded6efd7c8eab14501104450f81393521c9d273d816f7349b36\",\"detect_ts\":1791029705.84,\"exchange\":\"0xe111180000d2663c0091e4f400237545b87b996b\",\"fee_raw\":0,\"head\":94883044,\"input_hash\":\"1a4ecfac7f6dcc6a86bc87b6dda8e4e8532a04442c395a87e9a201597ce17363\",\"latency_s\":-0.16,\"log_index\":333,\"output_hash\":\"f20289c5c959af31113c7ebd50b05f2bb718d4f8f7477cd3cd4a4611117be3c7\",\"price\":0.61,\"rpc\":0,\"shares\":7.19,\"side\":\"BUY\",\"taker\":\"0x0a7c46489299331559598ab0412f46bda8ce8964\",\"token_id\":\"91036190492012940338955643023898317491861246049757872226635389212609285220623\",\"tx\":\"0x184263550d058d3efc367ff30a428e446e36b3409473f31054911ae088059386\",\"usdc\":4.3859,\"wallet\":\"0xafd492974cd531aae7786210438ae46b42047e61\"}\n"
+  },
+  {
+   "op": "delete",
+   "index": 301140,
+   "line": "{\"block\":94883044,\"block_ts\":1791029706,\"code_hash\":\"68e29fd1e5973ded6efd7c8eab14501104450f81393521c9d273d816f7349b36\",\"detect_ts\":1791029705.84,\"exchange\":\"0xe111180000d2663c0091e4f400237545b87b996b\",\"fee_raw\":0,\"head\":94883044,\"input_hash\":\"d0fbc57995530df1bc6f697c4a43d49bf20fa2e369626f73b732e381cc8e15cd\",\"latency_s\":-0.16,\"log_index\":382,\"output_hash\":\"81a28d92ed50cd859096b143ccd029bab1a9a0578b6b51326b04bfaff7decfa5\",\"price\":0.53,\"rpc\":0,\"shares\":8.0,\"side\":\"BUY\",\"taker\":\"0xb1ede8139256d2a01711197bde42e4a8c976537c\",\"token_id\":\"65952655585195961501487539811248535858896754779826519811467724185986149209141\",\"tx\":\"0x1b1ed632e010fc681e56d166ae0c503c1ba6ec959268e2911e557e4368cf22a5\",\"usdc\":4.24,\"wallet\":\"0x85f4ad3e1954473600e87f527adf90aa8a1d8f34\"}\n"
+  },
+  {
+   "op": "delete",
+   "index": 301141,
+   "line": "{\"block\":94883044,\"block_ts\":1791029706,\"code_hash\":\"68e29fd1e5973ded6efd7c8eab14501104450f81393521c9d273d816f7349b36\",\"detect_ts\":1791029705.84,\"exchange\":\"0xe111180000d2663c0091e4f400237545b87b996b\",\"fee_raw\":0,\"head\":94883044,\"input_hash\":\"33e540a2ece986f5259f683393556072d2a02e75ad1a3c5191a0ea5231a9d7f3\",\"latency_s\":-0.16,\"log_index\":425,\"output_hash\":\"8517ac0c6c911dd7211e4ecbb209c6992a0a1e6725545965d14443de45e92fb7\",\"price\":0.999,\"rpc\":0,\"shares\":333.33,\"side\":\"BUY\",\"taker\":\"0x99584af850e7249365af3cc6e954b76a2b33b9ac\",\"token_id\":\"66980062784350373924994106301834318685446949982185278564190451882226099581655\",\"tx\":\"0x0bc8e3fd083b906c498ed92be548809bc5261bf96331ced59493b17e25ae600b\",\"usdc\":332.99667,\"wallet\":\"0xfc25f141ed27bb1787338d2c4e7f51e3a15e1f7f\"}\n"
+  },
+  {
+   "op": "delete",
+   "index": 301142,
+   "line": "{\"block\":94883044,\"block_ts\":1791029706,\"code_hash\":\"68e29fd1e5973ded6efd7c8eab14501104450f81393521c9d273d816f7349b36\",\"detect_ts\":1791029705.84,\"exchange\":\"0xe111180000d2663c0091e4f400237545b87b996b\",\"fee_raw\":0,\"head\":94883044,\"input_hash\":\"7049fec004a4cc087c9a48783281aad4ae5bb2334685c9958e60c88393337796\",\"latency_s\":-0.16,\"log_index\":482,\"output_hash\":\"972e8de76e998ff6ac08b6e1947be47f59970008de438deae80b46be8e37048e\",\"price\":0.46,\"rpc\":0,\"shares\":1.851852,\"side\":\"BUY\",\"taker\":\"0x66dfd64c66d5c00cbbe9e0a5943c5d42ec0363a9\",\"token_id\":\"52436255631603866947682807489087889574477905283406836661907835449119494155563\",\"tx\":\"0xa7a144fab546f3a4d156021c8e35792866fa545df47ac15d1640db6d33789545\",\"usdc\":0.851852,\"wallet\":\"0x32ed2e546b187ca15e2841edc82b22c713cf8ec3\"}\n"
+  },
+  {
+   "op": "delete",
+   "index": 301143,
+   "line": "{\"block\":94883044,\"block_ts\":1791029706,\"code_hash\":\"68e29fd1e5973ded6efd7c8eab14501104450f81393521c9d273d816f7349b36\",\"detect_ts\":1791029705.84,\"exchange\":\"0xe111180000d2663c0091e4f400237545b87b996b\",\"fee_raw\":0,\"head\":94883044,\"input_hash\":\"a6e1ce52226fae9fdb2ad7840288a0f35e78c42b41d64cdc2e2fac8f00a7d231\",\"latency_s\":-0.16,\"log_index\":512,\"output_hash\":\"c6186830946706f0c2c8a629754b5a94b239a98ef82ddd9913a986def411fd8e\",\"price\":0.49,\"rpc\":0,\"shares\":100.0,\"side\":\"BUY\",\"taker\":\"0xaee6548bb618c28efadf06ee0061eec691479ecc\",\"token_id\":\"63277892112801831237311136550381162297708936026624282046458206064434176327952\",\"tx\":\"0x640a1b86edcb9be914e0ffde63ad18eda83b0b5e2478d80a93c16340d9759494\",\"usdc\":49.0,\"wallet\":\"0xfe787d2da716d60e8acff57fb87eb13cd4d10319\"}\n"
+  },
+  {
+   "op": "delete",
+   "index": 301144,
+   "line": "{\"block\":94883044,\"block_ts\":1791029706,\"code_hash\":\"68e29fd1e5973ded6efd7c8eab14501104450f81393521c9d273d816f7349b36\",\"detect_ts\":1791029705.84,\"exchange\":\"0xe111180000d2663c0091e4f400237545b87b996b\",\"fee_raw\":0,\"head\":94883044,\"input_hash\":\"3d441a83a17718d68b3243eb870cd98b95add5e9e65b800abc4edb55942f0878\",\"latency_s\":-0.16,\"log_index\":532,\"output_hash\":\"d05641e18c8038d5efefdaf6a3e086ddbba2158cb37bb201c9a8327f5f576450\",\"price\":0.46,\"rpc\":0,\"shares\":1.851852,\"side\":\"BUY\",\"taker\":\"0x6cb72f03e61789a735348ce1eec1576fad550664\",\"token_id\":\"52436255631603866947682807489087889574477905283406836661907835449119494155563\",\"tx\":\"0x14f39650b18869f0924524ff814fcc2fa13babf798a870b700336d98006c3dac\",\"usdc\":0.851852,\"wallet\":\"0x32ed2e546b187ca15e2841edc82b22c713cf8ec3\"}\n"
+  },
+  {
+   "op": "delete",
+   "index": 301145,
+   "line": "{\"block\":94883044,\"block_ts\":1791029706,\"code_hash\":\"68e29fd1e5973ded6efd7c8eab14501104450f81393521c9d273d816f7349b36\",\"detect_ts\":1791029705.84,\"exchange\":\"0xe111180000d2663c0091e4f400237545b87b996b\",\"fee_raw\":0,\"head\":94883044,\"input_hash\":\"403615a217d592e354afbaea22f28ea24abb9a61288f605c17664c2f187b2fc7\",\"latency_s\":-0.16,\"log_index\":562,\"output_hash\":\"fec91c0ccbe1d371d5b525644d0dc3c0cadb769e5d124a7ec5c4f8d80df5a089\",\"price\":0.46,\"rpc\":0,\"shares\":1.851852,\"side\":\"BUY\",\"taker\":\"0x92d7637843145b49f8c454d81b226f2dd41dd1cd\",\"token_id\":\"52436255631603866947682807489087889574477905283406836661907835449119494155563\",\"tx\":\"0x78e98ac6c0f233d2d6550f9a1e51c87cd6ca9a23416f4436c8813b28264f0b01\",\"usdc\":0.851852,\"wallet\":\"0x32ed2e546b187ca15e2841edc82b22c713cf8ec3\"}\n"
+  },
+  {
+   "op": "delete",
+   "index": 301146,
+   "line": "{\"block\":94883044,\"block_ts\":1791029706,\"code_hash\":\"68e29fd1e5973ded6efd7c8eab14501104450f81393521c9d273d816f7349b36\",\"detect_ts\":1791029705.84,\"exchange\":\"0xe111180000d2663c0091e4f400237545b87b996b\",\"fee_raw\":0,\"head\":94883044,\"input_hash\":\"8ef6fe9a571da8879a3c8d30dfdcce114946985469083a55528fd837fd415563\",\"latency_s\":-0.16,\"log_index\":644,\"output_hash\":\"14e31751eeab85cc97c2449f41bce9bfe28da46425afd5f6cef7e3e2de54e353\",\"price\":0.45,\"rpc\":0,\"shares\":1.818182,\"side\":\"BUY\",\"taker\":\"0x66dfd64c66d5c00cbbe9e0a5943c5d42ec0363a9\",\"token_id\":\"40466024551638929367896793589703917734293288497206010742838683553994137702833\",\"tx\":\"0xe21eb4025e2ad85b09916c051aafa51ef7c68a2ce09bf50eab8f8a98320ef748\",\"usdc\":0.818182,\"wallet\":\"0x6738a4628a29ce5b7f51beb226618b1aee5cc6fb\"}\n"
+  },
+  {
+   "op": "delete",
+   "index": 301147,
+   "line": "{\"block\":94883044,\"block_ts\":1791029706,\"code_hash\":\"68e29fd1e5973ded6efd7c8eab14501104450f81393521c9d273d816f7349b36\",\"detect_ts\":1791029705.84,\"exchange\":\"0xe111180000d2663c0091e4f400237545b87b996b\",\"fee_raw\":0,\"head\":94883044,\"input_hash\":\"d635d9f2b6fa1d8a74ea910c9dd3869942abe2193fd0d065b62b92dccd4134c8\",\"latency_s\":-0.16,\"log_index\":664,\"output_hash\":\"eb92ac950d63c0bf4c4a1dbfb1b452f2e670280768c526050ca8ff79442f25c2\",\"price\":0.46,\"rpc\":0,\"shares\":5.55,\"side\":\"BUY\",\"taker\":\"0x5c322abfb2e4a528923a82341f6c8f146a8c4ed9\",\"token_id\":\"52436255631603866947682807489087889574477905283406836661907835449119494155563\",\"tx\":\"0x9c2b7d3493305515b060e13fbfb601a490651f7d2adca9cb52a51d499922be39\",\"usdc\":2.553,\"wallet\":\"0x32ed2e546b187ca15e2841edc82b22c713cf8ec3\"}\n"
+  },
+  {
+   "op": "delete",
+   "index": 301148,
+   "line": "{\"block\":94883044,\"block_ts\":1791029706,\"code_hash\":\"68e29fd1e5973ded6efd7c8eab14501104450f81393521c9d273d816f7349b36\",\"detect_ts\":1791029705.84,\"exchange\":\"0xe111180000d2663c0091e4f400237545b87b996b\",\"fee_raw\":0,\"head\":94883044,\"input_hash\":\"2633a7570d2e46dc4b2f2b19dda4a4f7a4a6667348b8ac41e0a898f028d880ac\",\"latency_s\":-0.16,\"log_index\":685,\"output_hash\":\"2e2fce55363e5769903d37507aae617620fe80c28bac350f411d36d3230a65c7\",\"price\":0.53,\"rpc\":0,\"shares\":3.0,\"side\":\"BUY\",\"taker\":\"0x4241314b76605f8202d988be707150e8b07ecbc5\",\"token_id\":\"65952655585195961501487539811248535858896754779826519811467724185986149209141\",\"tx\":\"0xf1b52db509759a6e09afda835bd81dbc8b0f049681fbf28d4fadbff1dce271a4\",\"usdc\":1.59,\"wallet\":\"0x85f4ad3e1954473600e87f527adf90aa8a1d8f34\"}\n"
+  },
+  {
+   "op": "delete",
+   "index": 301149,
+   "line": "{\"block\":94883045,\"block_ts\":1791029708,\"code_hash\":\"68e29fd1e5973ded6efd7c8eab14501104450f81393521c9d273d816f7349b36\",\"detect_ts\":1791029707.62,\"exchange\":\"0xe111180000d2663c0091e4f400237545b87b996b\",\"fee_raw\":0,\"head\":94883045,\"input_hash\":\"330e4ae70c6fc821983b889a6ab5c418529d2a59b9de0cb0c97c1d7f2d86f9a2\",\"latency_s\":-0.38,\"log_index\":245,\"output_hash\":\"7067b133bd5474a8f86ef79610ae55be0a2d3b5f4fc8c2eb58aebf3b3ba938bd\",\"price\":0.46,\"rpc\":0,\"shares\":9.8,\"side\":\"BUY\",\"taker\":\"0xd3f340205bd249f1109f6e4f6124f1e55ec1b728\",\"token_id\":\"52436255631603866947682807489087889574477905283406836661907835449119494155563\",\"tx\":\"0xe95900bf5a0d9564a54f64b32a8d1ed8eef185a7f483ccdf99d24de49d7e1c1c\",\"usdc\":4.508,\"wallet\":\"0x32ed2e546b187ca15e2841edc82b22c713cf8ec3\"}\n"
+  },
+  {
+   "op": "delete",
+   "index": 301150,
+   "line": "{\"block\":94883045,\"block_ts\":1791029708,\"code_hash\":\"68e29fd1e5973ded6efd7c8eab14501104450f81393521c9d273d816f7349b36\",\"detect_ts\":1791029707.62,\"exchange\":\"0xe111180000d2663c0091e4f400237545b87b996b\",\"fee_raw\":0,\"head\":94883045,\"input_hash\":\"a18870c3080865dd61ad381d19d489b776dcf10474d6ee3053f6c21585fb336d\",\"latency_s\":-0.38,\"log_index\":265,\"output_hash\":\"f1081d087a0f7ad30be55d49a6c8db973ec370cda68343ee3d399ddae21b51f4\",\"price\":0.46,\"rpc\":0,\"shares\":5.55,\"side\":\"BUY\",\"taker\":\"0x3b481e8ef31313836eb4e74cb59fe05394c4ca60\",\"token_id\":\"52436255631603866947682807489087889574477905283406836661907835449119494155563\",\"tx\":\"0xd875523c826caafe38e0c925b803353196f73a3295b479304b63a602a58d4efb\",\"usdc\":2.553,\"wallet\":\"0x32ed2e546b187ca15e2841edc82b22c713cf8ec3\"}\n"
+  },
+  {
+   "op": "delete",
+   "index": 301151,
+   "line": "{\"block\":94883045,\"block_ts\":1791029708,\"code_hash\":\"68e29fd1e5973ded6efd7c8eab14501104450f81393521c9d273d816f7349b36\",\"detect_ts\":1791029707.62,\"exchange\":\"0xe111180000d2663c0091e4f400237545b87b996b\",\"fee_raw\":0,\"head\":94883045,\"input_hash\":\"0352e38d09e0d892f4f9ba3e47c471ab575887ea4f0957ce3eff0db28859a75e\",\"latency_s\":-0.38,\"log_index\":321,\"output_hash\":\"da30e79b6efd821348215c388efcdc54e67d4adcdf57d28393e2f79bfe52c347\",\"price\":0.39,\"rpc\":0,\"shares\":1.639343,\"side\":\"BUY\",\"taker\":\"0x6cb72f03e61789a735348ce1eec1576fad550664\",\"token_id\":\"70191620200130750700448681679326970071380150515426367706735033195951007742570\",\"tx\":\"0xe6db7d6ad52f70af0ce62aa9548d461e4607cf2c875d8febc07e881769aa6753\",\"usdc\":0.639344,\"wallet\":\"0x5d54bd315b9e87288cac27c03f2de7d6dfa2fb5e\"}\n"
+  },
+  {
+   "op": "delete",
+   "index": 301152,
+   "line": "{\"block\":94883045,\"block_ts\":1791029708,\"code_hash\":\"68e29fd1e5973ded6efd7c8eab14501104450f81393521c9d273d816f7349b36\",\"detect_ts\":1791029707.62,\"exchange\":\"0xe111180000d2663c0091e4f400237545b87b996b\",\"fee_raw\":0,\"head\":94883045,\"input_hash\":\"d969a138fd00d2da44dad67fdfc9c6d387716a0880b27fd9bef1d5b5d1051e9b\",\"latency_s\":-0.38,\"log_index\":353,\"output_hash\":\"fcf395ea0482ef0441e108d667569e4a04188b3fca11df87e0290e23bc5d8a74\",\"price\":0.46,\"rpc\":0,\"shares\":205.0,\"side\":\"BUY\",\"taker\":\"0x2106587a1e6f51b16880a5fd4ab253fd78d24c18\",\"token_id\":\"52436255631603866947682807489087889574477905283406836661907835449119494155563\",\"tx\":\"0x48bfbd93d1c581dce261774fca1881c5f7d78d931cba278e1450fe47ea385a4d\",\"usdc\":94.3,\"wallet\":\"0x32ed2e546b187ca15e2841edc82b22c713cf8ec3\"}\n"
+  },
+  {
+   "op": "delete",
+   "index": 301153,
+   "line": "{\"block\":94883045,\"block_ts\":1791029708,\"code_hash\":\"68e29fd1e5973ded6efd7c8eab14501104450f81393521c9d273d816f7349b36\",\"detect_ts\":1791029707.62,\"exchange\":\"0xe111180000d2663c0091e4f400237545b87b996b\",\"fee_raw\":0,\"head\":94883045,\"input_hash\":\"d4ea2ba5c85eb0c5250a876578f9b580f5b80719aaaa2ffe967cdad00058707a\",\"latency_s\":-0.38,\"log_index\":355,\"output_hash\":\"92da2aa26e39ed845344b6978e384fc8e9e899450f8c83bbbe7cfb10b8de9771\",\"price\":0.46,\"rpc\":0,\"shares\":250.0,\"side\":\"BUY\",\"taker\":\"0x2106587a1e6f51b16880a5fd4ab253fd78d24c18\",\"token_id\":\"52436255631603866947682807489087889574477905283406836661907835449119494155563\",\"tx\":\"0x48bfbd93d1c581dce261774fca1881c5f7d78d931cba278e1450fe47ea385a4d\",\"usdc\":115.0,\"wallet\":\"0xc2ad03f79ca3f3c17d8c7de2612ce0c89b7d40ed\"}\n"
+  },
+  {
+   "op": "delete",
+   "index": 301154,
+   "line": "{\"block\":94883045,\"block_ts\":1791029708,\"code_hash\":\"68e29fd1e5973ded6efd7c8eab14501104450f81393521c9d273d816f7349b36\",\"detect_ts\":1791029707.62,\"exchange\":\"0xe111180000d2663c0091e4f400237545b87b996b\",\"fee_raw\":0,\"head\":94883045,\"input_hash\":\"6b2a00ce41687f4083acb94ddfcf97f44c4151f62bcbcfe1c0259cf45de7d040\",\"latency_s\":-0.38,\"log_index\":359,\"output_hash\":\"d5a2de223a2dbac1b422da86e0a2562e3a4ff3941ae38c7e130f48c29962bbe4\",\"price\":0.46,\"rpc\":0,\"shares\":91.0,\"side\":\"BUY\",\"taker\":\"0x2106587a1e6f51b16880a5fd4ab253fd78d24c18\",\"token_id\":\"52436255631603866947682807489087889574477905283406836661907835449119494155563\",\"tx\":\"0x48bfbd93d1c581dce261774fca1881c5f7d78d931cba278e1450fe47ea385a4d\",\"usdc\":41.86,\"wallet\":\"0x3725d52f3c252e8374999cc8617292ea2608ad88\"}\n"
+  },
+  {
+   "op": "delete",
+   "index": 301155,
+   "line": "{\"block\":94883045,\"block_ts\":1791029708,\"code_hash\":\"68e29fd1e5973ded6efd7c8eab14501104450f81393521c9d273d816f7349b36\",\"detect_ts\":1791029707.62,\"exchange\":\"0xe2222d279d744050d28e00520010520000310f59\",\"fee_raw\":0,\"head\":94883045,\"input_hash\":\"9e511d3767f46f83c29d740d5ae14feb85581146cc6597f6259a6854a1827ab1\",\"latency_s\":-0.38,\"log_index\":405,\"output_hash\":\"c1745af3758e3eff07514fd6131926ffd04178ed92ba01640420b95425eeb7a7\",\"price\":0.93,\"rpc\":0,\"shares\":14.285715,\"side\":\"BUY\",\"taker\":\"0x9aac49b40d3dd64612e6be76fd402cedcb2a23c8\",\"token_id\":\"52807672214979254414498220342297981866678603023429717157188417130983807603021\",\"tx\":\"0xe19855dab6e8c0033d992c31ead694a7771f976628645cdcdbf94e89a08d7329\",\"usdc\":13.285715,\"wallet\":\"0x7ea571c40408f340c1c8fc8eaacebab53c1bde7b\"}\n"
+  },
+  {
+   "op": "delete",
+   "index": 301156,
+   "line": "{\"block\":94883045,\"block_ts\":1791029708,\"code_hash\":\"68e29fd1e5973ded6efd7c8eab14501104450f81393521c9d273d816f7349b36\",\"detect_ts\":1791029707.62,\"exchange\":\"0xe111180000d2663c0091e4f400237545b87b996b\",\"fee_raw\":0,\"head\":94883045,\"input_hash\":\"2443ddf34e94f06aee184f8b4b45bc2cb090f73d50d83627bb7e3d38434459e3\",\"latency_s\":-0.38,\"log_index\":439,\"output_hash\":\"e22180ad7abcc7ab2dc3073b16ffcbab73565fc4d0901dd289c80ea965bfec02\",\"price\":0.37,\"rpc\":0,\"shares\":1.587302,\"side\":\"BUY\",\"taker\":\"0x9cc31b5d8c0ed27a80c29f3563c23f6c5727bfa6\",\"token_id\":\"56801310133355853536472057522244889248711141845236110861397080679588241722213\",\"tx\":\"0xd80c9cfd35d6987a0e07a00b74303217b58e6d342eb86365f9bc234af48f2714\",\"usdc\":0.587302,\"wallet\":\"0xa080dadd87036ad01dbf5e9c254b0c3dbdba234f\"}\n"
+  },
+  {
+   "op": "delete",
+   "index": 301157,
+   "line": "{\"block\":94883045,\"block_ts\":1791029708,\"code_hash\":\"68e29fd1e5973ded6efd7c8eab14501104450f81393521c9d273d816f7349b36\",\"detect_ts\":1791029707.62,\"exchange\":\"0xe111180000d2663c0091e4f400237545b87b996b\",\"fee_raw\":0,\"head\":94883045,\"input_hash\":\"88408de04b3af608a1bc74734a36fbcb33679c81a01ad504c551eb0427c88f4c\",\"latency_s\":-0.38,\"log_index\":644,\"output_hash\":\"2eadeede77e6b2c45fc9a42e079df0003fa31eeccb61f285fc254d1a62f5b5a9\",\"price\":0.82,\"rpc\":0,\"shares\":8.09,\"side\":\"BUY\",\"taker\":\"0x79ae097215202b5d01f98e4479fb219102469a4a\",\"token_id\":\"54670529946647875865209810676141662324799705829995787252496904858256703912703\",\"tx\":\"0xfa0e7b0a697d403f543f3285c4b9aaf07c93948aa71a20b62424232ede40deab\",\"usdc\":6.6338,\"wallet\":\"0x1e3a86ef98030e7e0519e127d8178e9b45389e14\"}\n"
+  },
+  {
+   "op": "delete",
+   "index": 301158,
+   "line": "{\"block\":94883045,\"block_ts\":1791029708,\"code_hash\":\"68e29fd1e5973ded6efd7c8eab14501104450f81393521c9d273d816f7349b36\",\"detect_ts\":1791029707.62,\"exchange\":\"0xe111180000d2663c0091e4f400237545b87b996b\",\"fee_raw\":0,\"head\":94883045,\"input_hash\":\"daa95384df91a2364f3af15f6551425e147eda3b8646c81fe79472e402502fb8\",\"latency_s\":-0.38,\"log_index\":672,\"output_hash\":\"5242249ae71e3d6588bbfc21d1a2a702022250d357283ff2c2618abd541ebd7b\",\"price\":0.82,\"rpc\":0,\"shares\":1000.0,\"side\":\"BUY\",\"taker\":\"0x79ae097215202b5d01f98e4479fb219102469a4a\",\"token_id\":\"54670529946647875865209810676141662324799705829995787252496904858256703912703\",\"tx\":\"0xfa0e7b0a697d403f543f3285c4b9aaf07c93948aa71a20b62424232ede40deab\",\"usdc\":820.0,\"wallet\":\"0x60e30101f81028d16ac06b982728b085bfc457b5\"}\n"
+  },
+  {
+   "op": "delete",
+   "index": 301159,
+   "line": "{\"block\":94883045,\"block_ts\":1791029708,\"code_hash\":\"68e29fd1e5973ded6efd7c8eab14501104450f81393521c9d273d816f7349b36\",\"detect_ts\":1791029707.62,\"exchange\":\"0xe111180000d2663c0091e4f400237545b87b996b\",\"fee_raw\":0,\"head\":94883045,\"input_hash\":\"7d3dfc2113060b4a7a35e40072fcd71235daf44ebde907732182d2a66b227ac1\",\"latency_s\":-0.38,\"log_index\":720,\"output_hash\":\"bcabc127a338ae5c01b5951fb945dad1b79559f5f468c27da325a4bd38aa63c3\",\"price\":0.46,\"rpc\":0,\"shares\":17.62963,\"side\":\"BUY\",\"taker\":\"0xe9076a87c5ed90ef16e6fe6529c943baeca0cff6\",\"token_id\":\"30136144062058178058345048255788041339425560289368003846060012850689404508345\",\"tx\":\"0xa347315789e1d7dcccdb7f3c285c62b6febc6c204b760bafd8e5ce08296f00ca\",\"usdc\":8.10963,\"wallet\":\"0xfe787d2da716d60e8acff57fb87eb13cd4d10319\"}\n"
+  },
+  {
+   "op": "delete",
+   "index": 301160,
+   "line": "{\"block\":94883045,\"block_ts\":1791029708,\"code_hash\":\"68e29fd1e5973ded6efd7c8eab14501104450f81393521c9d273d816f7349b36\",\"detect_ts\":1791029707.62,\"exchange\":\"0xe111180000d2663c0091e4f400237545b87b996b\",\"fee_raw\":0,\"head\":94883045,\"input_hash\":\"c7e0ed9a6ad410c3e7048a5a9afff4048e1d657afae1d1f749d3a0a434205aa4\",\"latency_s\":-0.38,\"log_index\":800,\"output_hash\":\"68f191a9cc6bb10bf5cdce179184e20a6c0309ee7856ff7696b92a68f4f13a3e\",\"price\":0.42,\"rpc\":0,\"shares\":1.988276,\"side\":\"BUY\",\"taker\":\"0x8980519e4c4dfd503a736d9cbb4755f4d34cc8f7\",\"token_id\":\"40466024551638929367896793589703917734293288497206010742838683553994137702833\",\"tx\":\"0x93e0dd9096ac8bc2b4391665b32712f72a7dcaf8faf75210fc5d69a3a27cb480\",\"usdc\":0.835076,\"wallet\":\"0x870b8e90cb5c4d5e8c45483eebe0b68432d2a137\"}\n"
+  },
+  {
+   "op": "delete",
+   "index": 301161,
+   "line": "{\"block\":94883046,\"block_ts\":1791029709,\"code_hash\":\"68e29fd1e5973ded6efd7c8eab14501104450f81393521c9d273d816f7349b36\",\"detect_ts\":1791029709.293,\"exchange\":\"0xe111180000d2663c0091e4f400237545b87b996b\",\"fee_raw\":0,\"head\":94883046,\"input_hash\":\"eac9447c5030ae61774e3b511e086514cbd8d36221a46ce9f3d9e362beecae0c\",\"latency_s\":0.293,\"log_index\":592,\"output_hash\":\"a2834fe9156efef1397b4aef45ad029a49a329fb5c3d61a83b300899b3d35278\",\"price\":0.61,\"rpc\":0,\"shares\":164.102565,\"side\":\"BUY\",\"taker\":\"0xb66c2855ecdf8d41d6028b749fe7970f291ba0f5\",\"token_id\":\"91036190492012940338955643023898317491861246049757872226635389212609285220623\",\"tx\":\"0x4e78d1591baa27c0469ea182556f94bae89334bfbf96d7317c5b58926d267dc4\",\"usdc\":100.102565,\"wallet\":\"0xafd492974cd531aae7786210438ae46b42047e61\"}\n"
+  },
+  {
+   "op": "delete",
+   "index": 301162,
+   "line": "{\"block\":94883046,\"block_ts\":1791029709,\"code_hash\":\"68e29fd1e5973ded6efd7c8eab14501104450f81393521c9d273d816f7349b36\",\"detect_ts\":1791029709.293,\"exchange\":\"0xe111180000d2663c0091e4f400237545b87b996b\",\"fee_raw\":1952000,\"head\":94883046,\"input_hash\":\"9507d393307eb8d75b3c943d02794cab6624af1394d6ee96be571eea2e47b75e\",\"latency_s\":0.293,\"log_index\":596,\"output_hash\":\"6b0842eafa9e4c8d2e1cc0d0931ba9699a15a661f5b4b3d5a9b8c2f6a27d6c69\",\"price\":0.39,\"rpc\":0,\"shares\":164.102565,\"side\":\"BUY\",\"taker\":\"0xe111180000d2663c0091e4f400237545b87b996b\",\"token_id\":\"43625655639462304107786558070607909373554815682268591219916351829563252721226\",\"tx\":\"0x4e78d1591baa27c0469ea182556f94bae89334bfbf96d7317c5b58926d267dc4\",\"usdc\":64.0,\"wallet\":\"0xb66c2855ecdf8d41d6028b749fe7970f291ba0f5\"}\n"
+  },
+  {
+   "op": "delete",
+   "index": 301163,
+   "line": "{\"block\":94883046,\"block_ts\":1791029709,\"code_hash\":\"68e29fd1e5973ded6efd7c8eab14501104450f81393521c9d273d816f7349b36\",\"detect_ts\":1791029709.293,\"exchange\":\"0xe111180000d2663c0091e4f400237545b87b996b\",\"fee_raw\":87460,\"head\":94883046,\"input_hash\":\"589b9ac01c73d4f268d507591a1276fb16edc9d81a8e7ef4619a4fc644360088\",\"latency_s\":0.293,\"log_index\":625,\"output_hash\":\"5080d3748c7d6e4b1628780c7c0cbd80c7e5bbddaba5baf6ebe97b074213038f\",\"price\":0.51,\"rpc\":0,\"shares\":5.0,\"side\":\"BUY\",\"taker\":\"0xe111180000d2663c0091e4f400237545b87b996b\",\"token_id\":\"7454800014877164844735711571780485550529200252457088613130532765879319057735\",\"tx\":\"0xc140e262df51cfd5f196ab3dd2e2e3e4c5b4b523df4315d5d66131fb85305f8b\",\"usdc\":2.55,\"wallet\":\"0x13c62167d1c8df2b87dba8feb7abf43710e24048\"}\n"
+  },
+  {
+   "op": "delete",
+   "index": 301164,
+   "line": "{\"block\":94883046,\"block_ts\":1791029709,\"code_hash\":\"68e29fd1e5973ded6efd7c8eab14501104450f81393521c9d273d816f7349b36\",\"detect_ts\":1791029709.293,\"exchange\":\"0xe2222d279d744050d28e00520010520000310f59\",\"fee_raw\":18400,\"head\":94883046,\"input_hash\":\"a802e81959494c8114b7d732ffcf9f3818ba0f1c39027e7223a1be2aeb7440f4\",\"latency_s\":0.293,\"log_index\":651,\"output_hash\":\"1d7e53c515f656d590eecee26b7a6e4ec81b5bab48b7cd5639d67cad8a734878\",\"price\":0.92,\"rpc\":0,\"shares\":5.0,\"side\":\"BUY\",\"taker\":\"0xe2222d279d744050d28e00520010520000310f59\",\"token_id\":\"6964058683903583876975496546289098763371681536795162635479567945100646803657\",\"tx\":\"0x7cb71113d9d715e4bf2517c95fa96da17a40ee6593bf925a36164ad8c37097a0\",\"usdc\":4.6,\"wallet\":\"0x2a69660046d7acc4ab204d7cc5ba78b0776cd2f7\"}\n"
+  },
+  {
+   "op": "delete",
+   "index": 301165,
+   "line": "{\"block\":94883046,\"block_ts\":1791029709,\"code_hash\":\"68e29fd1e5973ded6efd7c8eab14501104450f81393521c9d273d816f7349b36\",\"detect_ts\":1791029709.293,\"exchange\":\"0xe111180000d2663c0091e4f400237545b87b996b\",\"fee_raw\":0,\"head\":94883046,\"input_hash\":\"4201f1a06a046f83523bbf6db95168980ae6182b35d67725e89c3b3536465666\",\"latency_s\":0.293,\"log_index\":667,\"output_hash\":\"f3bd350c1517bce81bd93f5e38b0774bd62055df3422a84f61e4a561eaa9aa35\",\"price\":0.18,\"rpc\":0,\"shares\":60.975605,\"side\":\"BUY\",\"taker\":\"0x0c6367b4e0022ca702ad6f33cd2cf504b2cc3cbb\",\"token_id\":\"110228789265162247573633523670654614510596288800991469811659564688144278860665\",\"tx\":\"0x94f5fafff2487a50da8998916f10bfa0f030f02ccfd09db38228ee74f591fb8b\",\"usdc\":10.975609,\"wallet\":\"0x6e2c0e9474af7d720e5aba2a5b0bb6f723b7787c\"}\n"
+  },
+  {
+   "op": "delete",
+   "index": 301166,
+   "line": "{\"block\":94883046,\"block_ts\":1791029709,\"code_hash\":\"68e29fd1e5973ded6efd7c8eab14501104450f81393521c9d273d816f7349b36\",\"detect_ts\":1791029709.293,\"exchange\":\"0xe111180000d2663c0091e4f400237545b87b996b\",\"fee_raw\":0,\"head\":94883046,\"input_hash\":\"063b685928e7453d4e85bc1b79f2275fbaf71e933048f41ec4415c039dd3d880\",\"latency_s\":0.293,\"log_index\":687,\"output_hash\":\"57c4a98431e517dd6e04a193a6fdaa046a59841f06fb730f3880b939552d05c2\",\"price\":0.035,\"rpc\":0,\"shares\":2.590657,\"side\":\"BUY\",\"taker\":\"0xeb0bbc87f4fdc31ddfaedb3f841e1f1945cf5e48\",\"token_id\":\"41818672180768174766305626363401521460978902264099548644042702892981263775451\",\"tx\":\"0x4c629671e83f685517cce675d474ce2ec999967e8abd9c9bab6fdc8c3167d15f\",\"usdc\":0.090673,\"wallet\":\"0x0346afae2603313d2bbee96b628536c8cbe352a5\"}\n"
+  },
+  {
+   "op": "delete",
+   "index": 301167,
+   "line": "{\"block\":94883046,\"block_ts\":1791029709,\"code_hash\":\"68e29fd1e5973ded6efd7c8eab14501104450f81393521c9d273d816f7349b36\",\"detect_ts\":1791029709.293,\"exchange\":\"0xe111180000d2663c0091e4f400237545b87b996b\",\"fee_raw\":0,\"head\":94883046,\"input_hash\":\"b32ea5e7391b66e3d0759d177a19cf9b2dcfeec35661df6b78f294650cecf922\",\"latency_s\":0.293,\"log_index\":707,\"output_hash\":\"25060d09ffecdf7e9b2bc5acf3dab5c7d5e7d19b870a520205fa2926da840b30\",\"price\":0.49,\"rpc\":0,\"shares\":46.0,\"side\":\"BUY\",\"taker\":\"0x9674d0d14a078c5dd5cd411c64bff82523dfe1a2\",\"token_id\":\"63277892112801831237311136550381162297708936026624282046458206064434176327952\",\"tx\":\"0xbeb35090a3532c63762f4fd85805317afaa985509f43bbaaf65e18facdf418c3\",\"usdc\":22.54,\"wallet\":\"0xfe787d2da716d60e8acff57fb87eb13cd4d10319\"}\n"
+  },
+  {
+   "op": "delete",
+   "index": 301168,
+   "line": "{\"block\":94883046,\"block_ts\":1791029709,\"code_hash\":\"68e29fd1e5973ded6efd7c8eab14501104450f81393521c9d273d816f7349b36\",\"detect_ts\":1791029709.293,\"exchange\":\"0xe111180000d2663c0091e4f400237545b87b996b\",\"fee_raw\":0,\"head\":94883046,\"input_hash\":\"072342a8fbf7cad394b6735865571ea377f1a647cb251be3712a76fec18a2b88\",\"latency_s\":0.293,\"log_index\":760,\"output_hash\":\"301aa8d338c5fe3046064fd3affadbf1345c200355f0d6fabe6db6ecc68eab20\",\"price\":0.46,\"rpc\":0,\"shares\":61.53,\"side\":\"BUY\",\"taker\":\"0x0c955ea595bf5f62063a593b5e3437a5aa3610f5\",\"token_id\":\"30136144062058178058345048255788041339425560289368003846060012850689404508345\",\"tx\":\"0xce1d97312d66dafef4177ffe7516eaabb56f3fff79ca8ec9243d0e53f9fc7a46\",\"usdc\":28.3038,\"wallet\":\"0xfe787d2da716d60e8acff57fb87eb13cd4d10319\"}\n"
+  },
+  {
+   "op": "delete",
+   "index": 301169,
+   "line": "{\"block\":94883046,\"block_ts\":1791029709,\"code_hash\":\"68e29fd1e5973ded6efd7c8eab14501104450f81393521c9d273d816f7349b36\",\"detect_ts\":1791029709.293,\"exchange\":\"0xe111180000d2663c0091e4f400237545b87b996b\",\"fee_raw\":0,\"head\":94883046,\"input_hash\":\"434a6b0e7f4b3b50c2bbf943b88d54113d7b9581738ab7970491548a7870eb62\",\"latency_s\":0.293,\"log_index\":762,\"output_hash\":\"ea8b43fcfc16b24569798efb495df3229870fe8e461a3f58472e074bf37f57d4\",\"price\":0.46,\"rpc\":0,\"shares\":17.62,\"side\":\"BUY\",\"taker\":\"0x0c955ea595bf5f62063a593b5e3437a5aa3610f5\",\"token_id\":\"30136144062058178058345048255788041339425560289368003846060012850689404508345\",\"tx\":\"0xce1d97312d66dafef4177ffe7516eaabb56f3fff79ca8ec9243d0e53f9fc7a46\",\"usdc\":8.1052,\"wallet\":\"0xfe787d2da716d60e8acff57fb87eb13cd4d10319\"}\n"
+  },
+  {
+   "op": "delete",
+   "index": 301170,
+   "line": "{\"block\":94883046,\"block_ts\":1791029709,\"code_hash\":\"68e29fd1e5973ded6efd7c8eab14501104450f81393521c9d273d816f7349b36\",\"detect_ts\":1791029709.293,\"exchange\":\"0xe111180000d2663c0091e4f400237545b87b996b\",\"fee_raw\":983040,\"head\":94883046,\"input_hash\":\"1bffc9d8790fb501ce479d601753e0980e2e29f61f9b79b4d7cfc04678d1a066\",\"latency_s\":0.293,\"log_index\":766,\"output_hash\":\"9df544189bc40dd432471fb70909d3008f37a95f0bfe2a70064cf856ac87279c\",\"price\":0.54,\"rpc\":0,\"shares\":79.15,\"side\":\"BUY\",\"taker\":\"0xe111180000d2663c0091e4f400237545b87b996b\",\"token_id\":\"109771746428989380960765406077859025878600517237189055814897376121566846704433\",\"tx\":\"0xce1d97312d66dafef4177ffe7516eaabb56f3fff79ca8ec9243d0e53f9fc7a46\",\"usdc\":42.741,\"wallet\":\"0x0c955ea595bf5f62063a593b5e3437a5aa3610f5\"}\n"
+  },
+  {
+   "op": "delete",
+   "index": 301171,
+   "line": "{\"block\":94883046,\"block_ts\":1791029709,\"code_hash\":\"68e29fd1e5973ded6efd7c8eab14501104450f81393521c9d273d816f7349b36\",\"detect_ts\":1791029709.293,\"exchange\":\"0xe111180000d2663c0091e4f400237545b87b996b\",\"fee_raw\":1047010,\"head\":94883046,\"input_hash\":\"3d88c52e522b198f759a00f970b1a8b4dca3712df02f9616b428609f8f6740d2\",\"latency_s\":0.293,\"log_index\":2368,\"output_hash\":\"1a4f57f02094998ac69918c6e4f2551e450cbff7970ca0b2f72ef61676ede023\",\"price\":0.526667,\"rpc\":0,\"shares\":60.0,\"side\":\"BUY\",\"taker\":\"0xe111180000d2663c0091e4f400237545b87b996b\",\"token_id\":\"7454800014877164844735711571780485550529200252457088613130532765879319057735\",\"tx\":\"0xe42180168af93505c7d0c5fc594b50ea66506aae06d36cbf337383a02c39234b\",\"usdc\":31.6,\"wallet\":\"0xdf6539d1fadb951a02a999d31a72e0cd7fd9c36d\"}\n"
+  },
+  {
+   "op": "delete",
+   "index": 301172,
+   "line": "{\"block\":94883047,\"block_ts\":1791029711,\"code_hash\":\"68e29fd1e5973ded6efd7c8eab14501104450f81393521c9d273d816f7349b36\",\"detect_ts\":1791029710.988,\"exchange\":\"0xe2222d279d744050d28e00520010520000310f59\",\"fee_raw\":0,\"head\":94883047,\"input_hash\":\"2f365091f6ca85b75fed4fe015b8770086e64e8fe1608f364cb792ae5aefd657\",\"latency_s\":-0.012,\"log_index\":604,\"output_hash\":\"ec29e241dfc4918d00909fad7d55ee6cf9e52f0c6a699f468415affd2da7896a\",\"price\":0.21,\"rpc\":0,\"shares\":2.0,\"side\":\"BUY\",\"taker\":\"0x27066a9484c2a7ad5a0c6f85cdc778234985c6be\",\"token_id\":\"35918002536402278068733104173720734163636809186787266655185750371154047743298\",\"tx\":\"0x26915253b515a5367b866bf4c9802cccb22dbc047349549324a83118787da704\",\"usdc\":0.42,\"wallet\":\"0x966c31fb10f9fa46ae97ef8b0dc01c188c39087f\"}\n"
+  },
+  {
+   "op": "delete",
+   "index": 301173,
+   "line": "{\"block\":94883047,\"block_ts\":1791029711,\"code_hash\":\"68e29fd1e5973ded6efd7c8eab14501104450f81393521c9d273d816f7349b36\",\"detect_ts\":1791029710.988,\"exchange\":\"0xe111180000d2663c0091e4f400237545b87b996b\",\"fee_raw\":0,\"head\":94883047,\"input_hash\":\"5373b3011efa6939f1c79014189eaa15b5c4e08d6863da62323dfcb4c5207646\",\"latency_s\":-0.012,\"log_index\":713,\"output_hash\":\"e02e2443c0afb72fcdc32393a5125ae940a9044e1d77b4b09e8fbb9dabdef312\",\"price\":0.8,\"rpc\":0,\"shares\":100.0,\"side\":\"BUY\",\"taker\":\"0x880b1fc5d3beb01c237f0848b249fd72b48fc98b\",\"token_id\":\"29115223462370454592710457294937577485504263879964585533986265505497016232775\",\"tx\":\"0x6022e5103d6cde93610e0a8702c77d9b51991b8802a15ba88eabbec3b884c42d\",\"usdc\":80.0,\"wallet\":\"0x848da036c7bdbe4abd3fc975b5931add6aaa9867\"}\n"
+  },
+  {
+   "op": "delete",
+   "index": 301174,
+   "line": "{\"block\":94883047,\"block_ts\":1791029711,\"code_hash\":\"68e29fd1e5973ded6efd7c8eab14501104450f81393521c9d273d816f7349b36\",\"detect_ts\":1791029710.988,\"exchange\":\"0xe111180000d2663c0091e4f400237545b87b996b\",\"fee_raw\":0,\"head\":94883047,\"input_hash\":\"9b91bfa7c79d79d4e9848d6310031d7b6c1d6809497992df3276d722ba55cf32\",\"latency_s\":-0.012,\"log_index\":717,\"output_hash\":\"561d4c9393d43f60222d0ca6b359e47f0dfbbe1f9a7f1f0a06cdc8ff7280fccb\",\"price\":0.8,\"rpc\":0,\"shares\":300.0,\"side\":\"BUY\",\"taker\":\"0x880b1fc5d3beb01c237f0848b249fd72b48fc98b\",\"token_id\":\"29115223462370454592710457294937577485504263879964585533986265505497016232775\",\"tx\":\"0x6022e5103d6cde93610e0a8702c77d9b51991b8802a15ba88eabbec3b884c42d\",\"usdc\":240.0,\"wallet\":\"0x6e2c0e9474af7d720e5aba2a5b0bb6f723b7787c\"}\n"
+  },
+  {
+   "op": "delete",
+   "index": 301175,
+   "line": "{\"block\":94883047,\"block_ts\":1791029711,\"code_hash\":\"68e29fd1e5973ded6efd7c8eab14501104450f81393521c9d273d816f7349b36\",\"detect_ts\":1791029710.988,\"exchange\":\"0xe111180000d2663c0091e4f400237545b87b996b\",\"fee_raw\":0,\"head\":94883047,\"input_hash\":\"aa1f322627b6f80f0736e97953cfc6a37f43d93a40aec3b548cf4d91e39fe93a\",\"latency_s\":-0.012,\"log_index\":721,\"output_hash\":\"ea10110c4e8618c2783a7166981d1809a6128bacdb148d361854c3ac8e045d26\",\"price\":0.79,\"rpc\":0,\"shares\":19.99,\"side\":\"BUY\",\"taker\":\"0x880b1fc5d3beb01c237f0848b249fd72b48fc98b\",\"token_id\":\"29115223462370454592710457294937577485504263879964585533986265505497016232775\",\"tx\":\"0x6022e5103d6cde93610e0a8702c77d9b51991b8802a15ba88eabbec3b884c42d\",\"usdc\":15.7921,\"wallet\":\"0x6891589732cf8beaaf424b117d5c5c20919f6bb9\"}\n"
+  },
+  {
+   "op": "delete",
+   "index": 301176,
+   "line": "{\"block\":94883047,\"block_ts\":1791029711,\"code_hash\":\"68e29fd1e5973ded6efd7c8eab14501104450f81393521c9d273d816f7349b36\",\"detect_ts\":1791029710.988,\"exchange\":\"0xe111180000d2663c0091e4f400237545b87b996b\",\"fee_raw\":0,\"head\":94883047,\"input_hash\":\"eb77091c717a519ffe8a29203c845278ba11841a9423d4334cc26524caa36794\",\"latency_s\":-0.012,\"log_index\":723,\"output_hash\":\"3a96db3837bdde33f694d04b12b7cd45324ded32f30eea3da2e3de8d2bf21b37\",\"price\":0.79,\"rpc\":0,\"shares\":300.0,\"side\":\"BUY\",\"taker\":\"0x880b1fc5d3beb01c237f0848b249fd72b48fc98b\",\"token_id\":\"29115223462370454592710457294937577485504263879964585533986265505497016232775\",\"tx\":\"0x6022e5103d6cde93610e0a8702c77d9b51991b8802a15ba88eabbec3b884c42d\",\"usdc\":237.0,\"wallet\":\"0x6e2c0e9474af7d720e5aba2a5b0bb6f723b7787c\"}\n"
+  },
+  {
+   "op": "delete",
+   "index": 301177,
+   "line": "{\"block\":94883047,\"block_ts\":1791029711,\"code_hash\":\"68e29fd1e5973ded6efd7c8eab14501104450f81393521c9d273d816f7349b36\",\"detect_ts\":1791029710.988,\"exchange\":\"0xe111180000d2663c0091e4f400237545b87b996b\",\"fee_raw\":9263210,\"head\":94883047,\"input_hash\":\"9e6d8d70df8d9cc8a96ee38ef739d20aa7b930fb875aa3d4cde50fa97ea8fbf7\",\"latency_s\":-0.012,\"log_index\":729,\"output_hash\":\"153cccd8612744142cca44dbb52355ca7b3a793ef73efa2098db763ec1c2cc0e\",\"price\":0.2035,\"rpc\":0,\"shares\":1142.99,\"side\":\"BUY\",\"taker\":\"0xe111180000d2663c0091e4f400237545b87b996b\",\"token_id\":\"110228789265162247573633523670654614510596288800991469811659564688144278860665\",\"tx\":\"0x6022e5103d6cde93610e0a8702c77d9b51991b8802a15ba88eabbec3b884c42d\",\"usdc\":232.5979,\"wallet\":\"0x880b1fc5d3beb01c237f0848b249fd72b48fc98b\"}\n"
+  },
+  {
+   "op": "delete",
+   "index": 301178,
+   "line": "{\"block\":94883047,\"block_ts\":1791029711,\"code_hash\":\"68e29fd1e5973ded6efd7c8eab14501104450f81393521c9d273d816f7349b36\",\"detect_ts\":1791029710.988,\"exchange\":\"0xe111180000d2663c0091e4f400237545b87b996b\",\"fee_raw\":0,\"head\":94883047,\"input_hash\":\"a47082d364f989303cb312049aa155e47e45e4ab562c48155a9cf79f5900e27d\",\"latency_s\":-0.012,\"log_index\":756,\"output_hash\":\"d60226ee2c569706c3d2bdb8e88a8f8c51f8f3390b86fedda2429f03d9d0b2a4\",\"price\":0.21,\"rpc\":0,\"shares\":179.39,\"side\":\"BUY\",\"taker\":\"0x6e2c0e9474af7d720e5aba2a5b0bb6f723b7787c\",\"token_id\":\"110228789265162247573633523670654614510596288800991469811659564688144278860665\",\"tx\":\"0xa5ae4feabe75c05ec4a9aa1b8770c86d884e8602348c0f95128a717dbff458b9\",\"usdc\":37.6719,\"wallet\":\"0x880b1fc5d3beb01c237f0848b249fd72b48fc98b\"}\n"
+  },
+  {
+   "op": "delete",
+   "index": 301179,
+   "line": "{\"block\":94883047,\"block_ts\":1791029711,\"code_hash\":\"68e29fd1e5973ded6efd7c8eab14501104450f81393521c9d273d816f7349b36\",\"detect_ts\":1791029710.988,\"exchange\":\"0xe111180000d2663c0091e4f400237545b87b996b\",\"fee_raw\":1488040,\"head\":94883047,\"input_hash\":\"1eb0aeb800efbbcc8ef33cdfe0d356128c08c9b64ae5de0cbdfbed6dc637d90a\",\"latency_s\":-0.012,\"log_index\":760,\"output_hash\":\"6b6b77feb5696ccacdd81cca9cc2072109557c9fc06c3087c7a9d16d623e12b4\",\"price\":0.79,\"rpc\":0,\"shares\":179.39,\"side\":\"BUY\",\"taker\":\"0xe111180000d2663c0091e4f400237545b87b996b\",\"token_id\":\"29115223462370454592710457294937577485504263879964585533986265505497016232775\",\"tx\":\"0xa5ae4feabe75c05ec4a9aa1b8770c86d884e8602348c0f95128a717dbff458b9\",\"usdc\":141.7181,\"wallet\":\"0x6e2c0e9474af7d720e5aba2a5b0bb6f723b7787c\"}\n"
+  },
+  {
+   "op": "delete",
+   "index": 301180,
+   "line": "{\"block\":94883047,\"block_ts\":1791029711,\"code_hash\":\"68e29fd1e5973ded6efd7c8eab14501104450f81393521c9d273d816f7349b36\",\"detect_ts\":1791029710.988,\"exchange\":\"0xe2222d279d744050d28e00520010520000310f59\",\"fee_raw\":0,\"head\":94883047,\"input_hash\":\"a1b6aeb7997c9ee2549917ae3384ff06df7d43805519de2081bf35cd5466f113\",\"latency_s\":-0.012,\"log_index\":785,\"output_hash\":\"db7abbd1983906d871a3c6af66d9251054f318f26e5adbbbbc710f89e0e5c3a2\",\"price\":0.25,\"rpc\":0,\"shares\":77.15,\"side\":\"SELL\",\"taker\":\"0x1b0fcd4c06147cb090681b4bd59cab5b9319b7ae\",\"token_id\":\"53772962436553931510349030287788453253736449345076943229696264439046816366690\",\"tx\":\"0x7b5de9a0ad1510711738b8a4c895bd81bb1f4e2958eee080c2ecd523ddc10c9b\",\"usdc\":19.2875,\"wallet\":\"0x1f624696c102b99bea92c75a502fa7e4a6d676f6\"}\n"
+  },
+  {
+   "op": "delete",
+   "index": 301181,
+   "line": "{\"block\":94883047,\"block_ts\":1791029711,\"code_hash\":\"68e29fd1e5973ded6efd7c8eab14501104450f81393521c9d273d816f7349b36\",\"detect_ts\":1791029710.988,\"exchange\":\"0xe2222d279d744050d28e00520010520000310f59\",\"fee_raw\":0,\"head\":94883047,\"input_hash\":\"b8c57d2624aaaf313466f41e21be44ffd3d5f567f8063d0f41b6c20b135b7b6c\",\"latency_s\":-0.012,\"log_index\":788,\"output_hash\":\"e012be9e6581651bee81578f8446f0b32e32e148f1c2b3999e237828777491f1\",\"price\":0.25,\"rpc\":0,\"shares\":30.13,\"side\":\"SELL\",\"taker\":\"0x1b0fcd4c06147cb090681b4bd59cab5b9319b7ae\",\"token_id\":\"53772962436553931510349030287788453253736449345076943229696264439046816366690\",\"tx\":\"0x7b5de9a0ad1510711738b8a4c895bd81bb1f4e2958eee080c2ecd523ddc10c9b\",\"usdc\":7.5325,\"wallet\":\"0x1f624696c102b99bea92c75a502fa7e4a6d676f6\"}\n"
+  },
+  {
+   "op": "delete",
+   "index": 301182,
+   "line": "{\"block\":94883047,\"block_ts\":1791029711,\"code_hash\":\"68e29fd1e5973ded6efd7c8eab14501104450f81393521c9d273d816f7349b36\",\"detect_ts\":1791029710.988,\"exchange\":\"0xe111180000d2663c0091e4f400237545b87b996b\",\"fee_raw\":0,\"head\":94883047,\"input_hash\":\"16f408a06d55f29b71e34dbbd0b2f714ef54074e1cdfc2e30ecbcd3b279bebab\",\"latency_s\":-0.012,\"log_index\":807,\"output_hash\":\"065614d5d886fc67e5d95680ff34375f95d7dabb66b92e9c6b82c8de20425d66\",\"price\":0.93,\"rpc\":0,\"shares\":32.0,\"side\":\"BUY\",\"taker\":\"0x2a69660046d7acc4ab204d7cc5ba78b0776cd2f7\",\"token_id\":\"67611067499994824318072561748543305140692408259574837308316030404189069449022\",\"tx\":\"0xd2cae5090844ef3ea8313d7616540d8b379409b4dd414ff3167ce3ede44dd898\",\"usdc\":29.76,\"wallet\":\"0x0346afae2603313d2bbee96b628536c8cbe352a5\"}\n"
+  },
+  {
+   "op": "delete",
+   "index": 301183,
+   "line": "{\"block\":94883047,\"block_ts\":1791029711,\"code_hash\":\"68e29fd1e5973ded6efd7c8eab14501104450f81393521c9d273d816f7349b36\",\"detect_ts\":1791029710.988,\"exchange\":\"0xe111180000d2663c0091e4f400237545b87b996b\",\"fee_raw\":104160,\"head\":94883047,\"input_hash\":\"64c3ed1ba9cc12b4883ad5b1ec3aa984fd1e5787d9186a0af13f08b312f9afb7\",\"latency_s\":-0.012,\"log_index\":811,\"output_hash\":\"9bbc709ad250ed826b07da2e0f943faf36605b0afce24f554e6a8eab60baae8a\",\"price\":0.07,\"rpc\":0,\"shares\":32.0,\"side\":\"BUY\",\"taker\":\"0xe111180000d2663c0091e4f400237545b87b996b\",\"token_id\":\"95007743160160828518291341860224291507262630579666373253569226252448096925846\",\"tx\":\"0xd2cae5090844ef3ea8313d7616540d8b379409b4dd414ff3167ce3ede44dd898\",\"usdc\":2.24,\"wallet\":\"0x2a69660046d7acc4ab204d7cc5ba78b0776cd2f7\"}\n"
+  }
+ ],
+ "inject": "delete last 5 blocks 94883043..94883047 (51 fills)",
+ "expected": "exactly 1 x TRAILING_GAP blocks=[94883043, 94883044, 94883045, 94883046, 94883047] missing_fills=51",
+ "want": {
+  "code": "TRAILING_GAP",
+  "blocks": [
+   94883043,
+   94883044,
+   94883045,
+   94883046,
+   94883047
+  ],
+  "missing_fills": 51
+ },
+ "modified_file_sha256": "f89bbddd49efc3f286924aba2aaa99d9282a94661381d3a7f8bbd925323fd31e",
+ "modified_content_sha256": "58390d6259bafe442bf1b61a0e4da6f945c69c566be9e5fb80a13279209571e0",
+ "restore": {
+  "chain_listener_20261002.jsonl.gz": {
+   "kind": "file",
+   "restored_sha256": "5d57a98d53052c4f9490f6478ebaa2b3917282207dfae21fdca0fe01bf3a7e22",
+   "original_sha256": "5d57a98d53052c4f9490f6478ebaa2b3917282207dfae21fdca0fe01bf3a7e22",
+   "equal": true
+  },
+  "chain_listener_20261003.jsonl.gz": {
+   "kind": "content",
+   "restored_sha256": "28e5a7f504255aeb1f354673e3bcfcc1a315c17eb900a4480d64def7bb1863f0",
+   "original_sha256": "28e5a7f504255aeb1f354673e3bcfcc1a315c17eb900a4480d64def7bb1863f0",
+   "equal": true
+  }
+ },
+ "production_untouched": {
+  "chain_listener_20261002.jsonl.gz": true,
+  "chain_listener_20261003.jsonl.gz": true
+ }
+}

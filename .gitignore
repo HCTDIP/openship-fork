@@ -1,0 +1,6 @@
+# local test working copies (ledger_original = byte copy of raw/ledger/, sha in test-fixtures/ledger_original.sha256.json)
+test-fixtures/ledger_original/
+test-fixtures/dirty-ledger/
+test-fixtures/restored/
+test-fixtures/run.done
+__pycache__/

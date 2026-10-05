@@ -1,0 +1,31 @@
+--- T1
+T1 1 fake fill in block 94860000, tx 0xe9948b45335d3e4d619c1ac327b592b2f116155d5bfadb234a79ad66fbf6ac52, log_index 1063 (output_hash recomputed)
+T1 PASS [{"code": "EXTRA_IN_LEDGER", "block": 94860000, "tx": "0xe9948b45335d3e4d619c1ac327b592b2f116155d5bfadb234a79ad66fbf6ac52", "log_index": 1063}]
+T1 RESTORE OK
+--- T2
+T2 delete 1 real fill: block 94860001, tx 0x773c784c221fc71236b18dcbb25faea026d704fc45f06e13be6dad0c3a0050c8, log_index 224
+T2 PASS [{"code": "MISSING_FROM_LEDGER", "block": 94860001, "tx": "0x773c784c221fc71236b18dcbb25faea026d704fc45f06e13be6dad0c3a0050c8", "log_index": 224, "wallet": "0xf8af03f1e68ee7162db8983f0d6dd0dc869854c6"}]
+T2 RESTORE OK
+--- T3
+T3 delete all 23 fills of block 94860002
+T3 PASS [{"code": "MISSING_BLOCK", "block": 94860002, "missing_fills": 23}]
+T3 RESTORE OK
+--- T3.5
+T3.5 delete last 5 blocks 94883043..94883047 (51 fills)
+T3.5 PASS [{"code": "TRAILING_GAP", "ledger_last_block": 94883042, "expected_last_block": 94883047, "blocks": [94883043, 94883044, 94883045, 94883046, 94883047], "missing_fills": 51}]
+T3.5 RESTORE OK
+--- T3.6
+T3.6 delete file chain_listener_20261003.jsonl.gz
+T3.6 PASS [{"code": "MISSING_DAY_PARTITION", "day": "20261003", "file": "chain_listener_20261003.jsonl.gz"}]
+T3.6 RESTORE OK
+--- T5
+T5 nothing
+T5 PASS [{"code": "PASS"}, {"code": "PASS"}]
+T5 RESTORE OK
+--- T4
+{"T4a": true, "T4b": true, "T4c": false}
+--- listener unit tests
+Ran 8 tests in 0.020s
+
+OK
+{"T1": true, "T2": true, "T3": true, "T3.5": true, "T3.6": true, "T5": true}

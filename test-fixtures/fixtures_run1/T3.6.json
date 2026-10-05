@@ -1,0 +1,29 @@
+{
+ "fixture_id": "T3.6",
+ "target": "chain_listener_20261003.jsonl.gz",
+ "original_file_sha256": "16fce6de4b5ec6217aa94da677c00b01462eed506eda63bfb1773401603b7be5",
+ "original_content_sha256": "28e5a7f504255aeb1f354673e3bcfcc1a315c17eb900a4480d64def7bb1863f0",
+ "ops": [],
+ "inject": "delete file chain_listener_20261003.jsonl.gz",
+ "expected": "exactly 1 x MISSING_DAY_PARTITION day=20261003",
+ "modified_file_sha256": "(file deleted)",
+ "modified_content_sha256": "(file deleted)",
+ "restore": {
+  "chain_listener_20261002.jsonl.gz": {
+   "kind": "file",
+   "restored_sha256": "5d57a98d53052c4f9490f6478ebaa2b3917282207dfae21fdca0fe01bf3a7e22",
+   "original_sha256": "5d57a98d53052c4f9490f6478ebaa2b3917282207dfae21fdca0fe01bf3a7e22",
+   "equal": true
+  },
+  "chain_listener_20261003.jsonl.gz": {
+   "kind": "file",
+   "restored_sha256": "16fce6de4b5ec6217aa94da677c00b01462eed506eda63bfb1773401603b7be5",
+   "original_sha256": "16fce6de4b5ec6217aa94da677c00b01462eed506eda63bfb1773401603b7be5",
+   "equal": true
+  }
+ },
+ "production_untouched": {
+  "chain_listener_20261002.jsonl.gz": true,
+  "chain_listener_20261003.jsonl.gz": true
+ }
+}

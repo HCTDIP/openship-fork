@@ -1,0 +1,5 @@
+{'block': 94834428, 'missing_found': 16, 'missing_expected': 16, 'dups_in_prev_block': 22, 'codes': ['MISSING_BLOCK'], 'match': True}
+{'block': 94840332, 'missing_found': 12, 'missing_expected': 12, 'dups_in_prev_block': 35, 'codes': ['MISSING_BLOCK'], 'match': True}
+{'block': 94862944, 'missing_found': 1, 'missing_expected': 1, 'dups_in_prev_block': 12, 'codes': ['MISSING_BLOCK'], 'match': True}
+{'block': 94875380, 'missing_found': 29, 'missing_expected': 29, 'dups_in_prev_block': 49, 'codes': ['MISSING_BLOCK'], 'match': True}
+{'block': 94875386, 'missing_found': 3, 'missing_expected': 3, 'dups_in_prev_block': 16, 'codes': ['MISSING_BLOCK'], 'match': True}
